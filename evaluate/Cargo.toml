@@ -1,0 +1,9 @@
+[package]
+name = "evaluate"
+version = "0.1.0"
+edition = "2021"
+description = "Phase 2: accuracy + confusion matrix of a weights file on saved samples."
+
+[dependencies]
+nn-core = { path = "../nn-core" }
+serde_json = "1"

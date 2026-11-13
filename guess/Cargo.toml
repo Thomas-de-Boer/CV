@@ -1,0 +1,8 @@
+[package]
+name = "guess"
+version = "0.1.0"
+edition = "2021"
+description = "Guesses the weights of an untrained network: no data, no gradient descent."
+
+[dependencies]
+nn-core = { path = "../nn-core" }

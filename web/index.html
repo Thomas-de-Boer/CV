@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Watch a neural network read your handwriting</title>
+  <meta name="description" content="Draw a digit and watch a neural network, written from scratch in Rust and running in your browser as WebAssembly, work out what it is.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Watch a neural network read your handwriting</h1>
+      <p class="lede">
+        Draw a digit. A small neural network, written from scratch in Rust and running
+        right here in your browser, lights up layer by layer as it decides what you drew.
+      </p>
+    </header>
+
+    <section id="model-switch" class="card model" aria-label="Choose the network's weights" hidden>
+      <div class="switch" role="radiogroup" aria-label="Which weights the network uses">
+        <label><input type="radio" name="model" value="claude"><span>Claude-picked weights</span></label>
+        <label><input type="radio" name="model" value="trained"><span>Trained weights</span></label>
+      </div>
+      <div class="model-text" data-model-text="claude" hidden>
+        <p>
+          <strong>An experiment to see how good AI is at making AI.</strong>
+          Nobody trained this version. Claude, an AI model, chose every one of the 25,818 weights
+          itself by reasoning about what handwritten digits look like, with no training data and
+          without ever correcting a mistake. It has never seen a real handwritten digit.
+        </p>
+        <p>
+          On 10,000 real handwritten digits it gets 39.7% right. Pure chance would be 10%;
+          the trained version gets 96.8%.
+        </p>
+      </div>
+      <div class="model-text" data-model-text="trained" hidden>
+        <p>
+          <strong>Learned from 70,000 handwritten digits.</strong>
+          This version started with completely random weights, so at first it was right only
+          by luck. It was then shown every image in the MNIST collection of handwritten digits,
+          70,000 of them, 20 times over. For each image it made its guess, the guess was compared
+          with the right answer, and every weight was nudged a tiny bit in the direction that
+          would have made the answer more right (backpropagation). That happened in small
+          groups of 32 images: 43,760 rounds of nudging all 25,818 weights, about 25 seconds
+          on a laptop.
+        </p>
+        <p>
+          Trained the same way on 60,000 of the images, it reads 96.8% of the other 10,000
+          correctly, images it had never seen. The version running here then used those
+          10,000 as well.
+        </p>
+      </div>
+    </section>
+
+    <section class="stage" aria-label="Draw a digit">
+      <div class="card draw">
+        <h2>1 · Draw a digit (0–9)</h2>
+        <canvas id="pad" width="280" height="280" aria-label="Drawing area"></canvas>
+        <div class="row">
+          <button id="clear" type="button">Clear</button>
+          <span class="hint">Mouse, finger or pen. Draw big.</span>
+        </div>
+      </div>
+
+      <div class="card sees">
+        <h2>2 · What the network sees</h2>
+        <canvas id="seen" width="28" height="28" aria-label="The 28 by 28 pixel image given to the network"></canvas>
+        <p class="hint">Your drawing, cropped, shrunk to 28×28 pixels and centred.</p>
+      </div>
+
+      <div class="card answer" aria-live="polite">
+        <h2>3 · Its answer</h2>
+        <div id="answer-digit" class="digit">?</div>
+        <div id="answer-detail" class="detail">Draw something to start.</div>
+      </div>
+    </section>
+
+    <section class="card network" aria-label="The neural network">
+      <div class="network-head">
+        <h2>Inside the network</h2>
+        <span id="status" class="hint">Loading…</span>
+      </div>
+      <div id="net-wrap">
+        <canvas id="net"></canvas>
+        <div id="tooltip" hidden></div>
+      </div>
+      <p class="hint legend">
+        <span class="swatch warm"></span> pushes a neuron on
+        <span class="swatch cool"></span> holds it back ·
+        brighter = more active · hover or tap a neuron to see what it looks for
+      </p>
+    </section>
+
+    <section id="dev" class="card dev" hidden aria-label="Developer tools">
+      <h2>Dev mode · collect test samples</h2>
+      <p class="hint">
+        Draw a digit, then click the digit it <em>should</em> be (or press that key).
+        The 28×28 image is saved with your label and the canvas is cleared.
+      </p>
+      <div id="dev-digits" class="row digits"></div>
+      <div class="row">
+        <span id="dev-count">0 samples</span>
+        <button id="dev-undo" type="button">Undo last</button>
+        <button id="dev-export" type="button">Export samples.json</button>
+        <button id="dev-reset" type="button" class="danger">Delete all</button>
+      </div>
+      <pre id="dev-matrix" class="hint"></pre>
+    </section>
+
+    <section class="about">
+      <h2>What am I looking at?</h2>
+      <p>
+        On the left is your drawing as 784 pixels. Each circle after that is a neuron: it adds up
+        what the previous layer tells it, and lights up if the total is high enough.
+        The last layer has ten neurons, one per digit; the brightest one is the answer.
+      </p>
+      <p>
+        Both versions are the same network with the same 58 neurons; only the weights differ.
+        Draw something and flip the switch at the top to see how differently they react.
+      </p>
+    </section>
+  </main>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
