@@ -3,6 +3,10 @@ name: Test and deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # Once a day, so the project cards follow what is pinned on GitHub.
+  # 04:00 UTC = 05:00 or 06:00 in the Netherlands.
+  schedule:
+    - cron: "0 4 * * *"
   workflow_dispatch:
 
 permissions:

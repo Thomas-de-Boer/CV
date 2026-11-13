@@ -21,10 +21,12 @@ drawings are the remaining fair test (see below).
 ```bash
 cargo run --release -p guess                # writes web/weights-guess.bin (Claude-picked)
 wasm-pack build nn-wasm --target web --release --out-dir ../web/pkg
-py -m http.server -d web 8000               # WASM won't load from file://
+cd .. && py -m http.server 8000             # WASM won't load from file://
 ```
 
-Run these from this `ai/` folder. Then open <http://localhost:8000>. One-time setup:
+Run the first two from this `ai/` folder; the server runs from the repository
+root because the demo page shares its styles and fonts with the CV page
+(`../assets/`). Then open <http://localhost:8000/ai/web/>. One-time setup:
 `rustup target add wasm32-unknown-unknown` and `cargo install wasm-pack`.
 
 ## How the weights are guessed
@@ -78,7 +80,7 @@ numerical gradients in the tests.
 
 ## Test it on your own handwriting
 
-1. Open <http://localhost:8000/?dev=1>.
+1. Open <http://localhost:8000/ai/web/?dev=1>.
 2. Draw a digit, then press the key of the digit it *should* be (or click its
    button). The 28×28 image is saved with that label and the canvas clears.
 3. Click **Export samples.json**, move the file to the project root, and run:

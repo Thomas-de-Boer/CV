@@ -24,11 +24,16 @@ Then open <http://localhost:8000>. The full demo is at
 ## Editing the content
 
 - Text in both languages (English and Dutch) lives in `STRINGS` at the top of
-  `assets/site.js`. Anything in `[square brackets]` is still a placeholder.
+  `assets/site.js`. Change it there: the text in `index.html` is only what
+  shows before the script runs, and is replaced by `STRINGS`.
 - The project cards are the repositories pinned on the GitHub profile, stored
   in `assets/projects.json`. Every deploy refreshes that file; to refresh it
   locally run `bash tools/update-projects.sh` (needs the GitHub CLI). The last
-  card always links to the GitHub profile itself.
+  card always links to the GitHub profile itself. To give a project a picture,
+  upload one on GitHub under the repository's **Settings → Social preview**
+  (1280×640 works best); it appears on the card after the next deploy.
+- `assets/og-image.png` is the picture shown when the site's link is shared;
+  its source is `tools/og-image.html`.
 
 ## Deploying
 

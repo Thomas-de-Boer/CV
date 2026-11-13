@@ -1,9 +1,14 @@
 // Draws the network: input grid, one circle per neuron, the strongest
 // connections, and the output layer with probability bars. Canvas 2D only.
 
-const WARM = [255, 180, 84];
-const COOL = [90, 169, 255];
-const OFF = [28, 36, 52];
+// Colours of the CV site. The network panel is dark in both themes.
+import { t, formatNumber } from "./i18n.js";
+
+const WARM = [35, 203, 180]; // active, pushes a neuron on
+const COOL = [167, 139, 250]; // holds a neuron back
+const ACCENT = [239, 102, 62]; // the answer
+const OFF = [46, 44, 64];
+const FONT = '"IBM Plex Sans", system-ui, sans-serif';
 const REVEAL_MS = 900;
 const TOP_CONNECTIONS = 3;
 const HOVER_CONNECTIONS = 6;
@@ -49,6 +54,12 @@ export class NetworkView {
     this.hover = null;
     this.clear();
     this.resize();
+  }
+
+  /** The language changed: redo the labels and the open tooltip. */
+  relabel() {
+    this.refreshTooltip();
+    this.requestDraw();
   }
 
   // ------------------------------------------------------------ layout
@@ -220,8 +231,8 @@ export class NetworkView {
   neuronName(layer, index) {
     const isOutput = layer === this.model.sizes.length - 1;
     const name = this.model.names?.[layer - 1]?.[index];
-    if (isOutput) return `the digit ${index}`;
-    return name ?? `neuron ${index + 1}`;
+    if (isOutput) return t("theDigit", { d: index });
+    return name ?? t("neuron", { n: index + 1 });
   }
 
   refreshTooltip() {
@@ -239,19 +250,21 @@ export class NetworkView {
 
     let html = `<div class="name">${escapeHtml(this.neuronName(layer, index))}</div>`;
     html += `<div class="sub">${title ? escapeHtml(title) + " · " : ""}`;
-    html += active ? (isOutput ? `${(value * 100).toFixed(1)}% sure` : `activation ${value.toFixed(2)}`) : "idle";
+    if (!active) html += t("tipIdle");
+    else if (isOutput) html += t("tipSure", { pct: formatNumber(value * 100, 1) });
+    else html += t("tipActivation", { value: formatNumber(value, 2) });
     html += "</div>";
 
     if (t === 0) {
       html += `<canvas width="28" height="28"></canvas>`;
-      html += `<div class="sub"><span class="plus">■</span> wants ink here · <span class="minus">■</span> wants it empty</div>`;
+      html += `<div class="sub"><span class="plus">■</span> ${t("tipWantsInk")} · <span class="minus">■</span> ${t("tipWantsEmpty")}</div>`;
     } else {
       const top = this.contributions(t, index, 5);
       if (top.length) {
-        html += `<div class="sub" style="margin-top:6px">${active ? "Strongest influences right now" : "Listens most to"}</div><ul>`;
+        html += `<div class="sub" style="margin-top:6px">${t(active ? "tipStrongest" : "tipListens")}</div><ul>`;
         for (const c of top) {
           const sign = c.value >= 0 ? "plus" : "minus";
-          const number = `${c.value >= 0 ? "+" : "−"}${Math.abs(c.value).toFixed(2)}`;
+          const number = `${c.value >= 0 ? "+" : "−"}${formatNumber(Math.abs(c.value), 2)}`;
           html += `<li><span>${escapeHtml(this.neuronName(t, c.source))}</span><span class="${sign}">${number}</span></li>`;
         }
         html += "</ul>";
@@ -284,7 +297,7 @@ export class NetworkView {
     for (let i = 0; i < 784; i++) {
       const w = weights[offset + i] / max;
       const strength = Math.pow(Math.abs(w), 0.6);
-      let colour = mix([12, 16, 24], w >= 0 ? WARM : COOL, strength);
+      let colour = mix([18, 17, 28], w >= 0 ? WARM : COOL, strength);
       if (this.input && this.input[i] > 0.3) colour = mix(colour, [255, 255, 255], 0.55 * this.input[i]);
       image.data.set([colour[0], colour[1], colour[2], 255], i * 4);
     }
@@ -333,34 +346,33 @@ export class NetworkView {
   drawTitles() {
     const { ctx } = this;
     const { sizes, titles } = this.model;
-    ctx.font = `${this.narrow ? 10 : 12}px system-ui, sans-serif`;
-    ctx.fillStyle = "#8b98a9";
+    ctx.font = `${this.narrow ? 10 : 12}px ${FONT}`;
+    ctx.fillStyle = "#a09eb4";
     ctx.textBaseline = "top";
     ctx.textAlign = "center";
     for (let k = 0; k < sizes.length; k++) {
       let label;
-      if (k === 0) label = this.narrow ? "input" : "input · 784 pixels";
-      else if (k === sizes.length - 1) label = "answer";
-      else label = titles?.[k - 1] ?? `hidden layer ${k}`;
-      if (this.narrow && k > 0 && k < sizes.length - 1) label = label.split(" ")[0];
+      if (k === 0) label = t(this.narrow ? "netInputShort" : "netInput");
+      else if (k === sizes.length - 1) label = t("netAnswer");
+      else if (titles?.[k - 1]) label = this.narrow ? titles[k - 1].split(" ")[0] : titles[k - 1];
+      else label = t(this.narrow ? "netHiddenShort" : "netHidden", { k });
       ctx.fillText(label, this.columnX[k], 6);
     }
   }
 
   drawInputGrid() {
     const { ctx, grid } = this;
-    ctx.fillStyle = "#000";
+    ctx.fillStyle = "#1b1a28";
     ctx.fillRect(grid.x, grid.y, grid.size, grid.size);
     if (this.input) {
       for (let i = 0; i < 784; i++) {
         const v = this.input[i];
         if (v <= 0.02) continue;
-        const shade = Math.round(255 * v);
-        ctx.fillStyle = `rgb(${shade},${shade},${shade})`;
+        ctx.fillStyle = rgba([237, 236, 244], v);
         ctx.fillRect(grid.x + (i % 28) * grid.cell, grid.y + Math.floor(i / 28) * grid.cell, grid.cell, grid.cell);
       }
     }
-    ctx.strokeStyle = "#243044";
+    ctx.strokeStyle = "#2e2c40";
     ctx.lineWidth = 1;
     ctx.strokeRect(grid.x - 0.5, grid.y - 0.5, grid.size + 1, grid.size + 1);
   }
@@ -418,7 +430,7 @@ export class NetworkView {
         ctx.fill();
       }
       ctx.fillStyle = rgba(mix(OFF, level > 0.85 ? mix(WARM, [255, 255, 255], (level - 0.85) * 3) : WARM, Math.min(1, level / 0.85)), 1);
-      ctx.strokeStyle = hovered ? "#ffffff" : level > 0.05 ? rgba(WARM, 0.9) : "#34435c";
+      ctx.strokeStyle = hovered ? "#ffffff" : level > 0.05 ? rgba(WARM, 0.9) : "#4a4862";
       ctx.lineWidth = hovered ? 2 : 1;
       ctx.beginPath();
       ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
@@ -439,29 +451,29 @@ export class NetworkView {
       const winner = i === best && fade > 0.6;
       const hovered = this.hover && this.hover.layer === k && this.hover.index === i;
 
-      ctx.fillStyle = rgba(mix(OFF, WARM, clamp01(prob)), 1);
-      ctx.strokeStyle = hovered ? "#ffffff" : winner ? rgba(WARM, 1) : "#34435c";
+      ctx.fillStyle = rgba(mix(OFF, winner ? ACCENT : WARM, clamp01(prob)), 1);
+      ctx.strokeStyle = hovered ? "#ffffff" : winner ? rgba(ACCENT, 1) : "#4a4862";
       ctx.lineWidth = winner || hovered ? 2.5 : 1;
       ctx.beginPath();
       ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
       ctx.fill();
       ctx.stroke();
 
-      ctx.font = `${winner ? "700" : "500"} ${Math.round(r * 1.15)}px system-ui, sans-serif`;
+      ctx.font = `${winner ? "700" : "500"} ${Math.round(r * 1.15)}px ${FONT}`;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillStyle = prob > 0.55 ? "#1a1205" : winner ? "#ffffff" : "#aab6c5";
+      ctx.fillStyle = prob > 0.55 ? "#12111c" : winner ? "#ffffff" : "#a09eb4";
       ctx.fillText(String(i), p.x, p.y + 0.5);
 
       const bx = p.x + r + 8;
-      ctx.fillStyle = "#1c2434";
+      ctx.fillStyle = "#1b1a28";
       ctx.fillRect(bx, p.y - 3, barWidth, 6);
-      ctx.fillStyle = rgba(WARM, winner ? 1 : 0.55);
+      ctx.fillStyle = winner ? rgba(ACCENT, 1) : rgba(WARM, 0.55);
       ctx.fillRect(bx, p.y - 3, barWidth * clamp01(prob), 6);
       if (!this.narrow && acts) {
-        ctx.font = "11px system-ui, sans-serif";
+        ctx.font = `11px ${FONT}`;
         ctx.textAlign = "left";
-        ctx.fillStyle = winner ? "#e6edf3" : "#8b98a9";
+        ctx.fillStyle = winner ? "#edecf4" : "#a09eb4";
         ctx.fillText(`${Math.round(prob * 100)}%`, bx + barWidth + 6, p.y + 0.5);
       }
     });

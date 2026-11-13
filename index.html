@@ -6,6 +6,17 @@
   <title>Thomas de Boer — CV</title>
   <meta name="description" content="Thomas de Boer, Software Development student at Nova College. Projects, a neural network built from scratch in Rust, work and school.">
   <meta name="color-scheme" content="dark light">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <!-- Link preview (shown when the site is shared). These need the full address. -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tdeboer.com/">
+  <meta property="og:title" content="Thomas de Boer — CV">
+  <meta property="og:description" content="Software Development student. Projects, and a neural network built from scratch that runs in your browser.">
+  <meta property="og:image" content="https://tdeboer.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <script>
     // Theme and language are set before first paint so the page doesn't flash.
     (function () {
@@ -59,7 +70,7 @@
 <section id="top" class="hero wrap">
   <div class="hero-main">
     <div class="hero-meta">
-      <span class="badge"><span class="badge-dot" aria-hidden="true"></span><span data-i18n="badge">Available for internship</span></span>
+      <span class="badge"><span class="badge-dot" aria-hidden="true"></span><span data-i18n="badge">Available for final internship · from August 2027</span></span>
       <span class="label">Software developer · MBO 4</span>
     </div>
     <h1>Thomas de Boer</h1>
@@ -72,14 +83,13 @@
   <div class="card hero-card">
     <span class="label" data-i18n="langsTitle">Languages I work in</span>
     <div class="tags tags-wide">
-      <span class="tag">Python</span>
       <span class="tag">Java</span>
+      <span class="tag">Python</span>
       <span class="tag">C#</span>
-      <span class="tag">JavaScript</span>
-      <span class="tag">PHP</span>
       <span class="tag">Rust</span>
+      <span class="tag">JavaScript</span>
     </div>
-    <span class="small" data-i18n="focus">Focus: backend, databases, systems architecture.</span>
+    <span class="small" data-i18n="focus">Trying a bit of everything right now; backend is where I want to go.</span>
   </div>
 </section>
 
@@ -108,7 +118,7 @@
   <div class="nn-inner wrap">
     <div class="nn-text">
       <span class="eyebrow">02 — <span data-i18n="navNN">Neural network</span></span>
-      <h2 id="nn-title" data-i18n="nnTitle">Draw a digit. Watch it think.</h2>
+      <h2 id="nn-title" data-i18n="nnTitle">Draw a number. Watch it think.</h2>
       <p class="lead" data-i18n="nnBody">A neural network built from scratch, running in your browser. Draw a number on the pad and see each layer light up before it makes its guess.</p>
       <div class="tags">
         <span class="tag">Rust</span>
@@ -116,8 +126,7 @@
         <span class="tag" data-i18n="noLibs">No ML libraries</span>
       </div>
       <div class="actions">
-        <a class="btn btn-primary" href="ai/web/" data-i18n="openDemo">Open full demo</a>
-        <a class="btn btn-text" href="ai/web/#how" data-i18n="how">How it works →</a>
+        <a class="btn btn-primary btn-wide" href="ai/web/" data-i18n="openDemo">Open full demo</a>
       </div>
     </div>
 
@@ -129,7 +138,7 @@
       <div class="demo-body">
         <div class="demo-pad">
           <canvas id="demo-canvas" width="280" height="280" aria-label="Drawing pad" data-i18n-aria-label="pad"></canvas>
-          <span class="demo-caption" data-i18n="input">Draw a digit here · 0–9</span>
+          <span class="demo-caption" data-i18n="input">Draw a number here · 0–9</span>
         </div>
         <div class="demo-layers" id="demo-layers" aria-hidden="true"></div>
         <div class="demo-out" aria-live="polite">
@@ -156,27 +165,32 @@
     <div class="timeline-col">
       <h3 class="label" data-i18n="school">School</h3>
       <div class="card entry">
-        <span class="label when">[Year] — <span data-i18n="now">Now</span></span>
+        <span class="label when">2025 — <span data-i18n="now">Now</span></span>
         <span class="title">MBO 4 Software Development</span>
         <span class="small" data-i18n="nova">Nova College · second year</span>
       </div>
       <div class="card entry">
-        <span class="label when">[Year] — [Year]</span>
-        <span class="title" data-i18n="prevSchool">[Previous school]</span>
-        <span class="small" data-i18n="level">[Level / diploma]</span>
+        <span class="label when">2021 — 2025</span>
+        <span class="title" data-i18n="prevSchool">Dali College</span>
+        <span class="small" data-i18n="level">Mavo</span>
       </div>
     </div>
     <div class="timeline-col">
       <h3 class="label" data-i18n="work">Work</h3>
-      <div class="card entry">
-        <span class="label when">[Year] — <span data-i18n="now">Now</span></span>
-        <span class="title">Vomar Voordeelmarkt</span>
-        <span class="small" data-i18n="vomarRole">Part-time · [your role]</span>
-      </div>
       <div class="card entry entry-next">
         <span class="label when" data-i18n="nextLabel">Next</span>
         <span class="title" data-i18n="internTitle">Internship — your company?</span>
-        <span class="small" data-i18n="internBody">Looking for a blokstage in software development.</span>
+        <span class="small" data-i18n="internBody">Looking for a final internship (eindstage) in software development, from around August 2027.</span>
+      </div>
+      <div class="card entry">
+        <span class="label when">2026 — <span data-i18n="now">Now</span></span>
+        <span class="title">Motivaction International B.V.</span>
+        <span class="small" data-i18n="motiRole">Internship (blokstage) · working on a planning tool</span>
+      </div>
+      <div class="card entry">
+        <span class="label when">2025 — <span data-i18n="now">Now</span></span>
+        <span class="title">Vomar Voordeelmarkt</span>
+        <span class="small" data-i18n="vomarRole">Part-time · Shelf stocker / Cashier</span>
       </div>
     </div>
   </div>
@@ -191,23 +205,23 @@
   <div class="more-grid">
     <div class="card entry">
       <span class="tag" data-i18n="cert">Certificate</span>
-      <span class="title" data-i18n="certName">[Certificate name]</span>
-      <span class="small" data-i18n="issuer">[Issuer · year]</span>
-    </div>
-    <div class="card entry">
-      <span class="tag" data-i18n="cert">Certificate</span>
-      <span class="title" data-i18n="certName">[Certificate name]</span>
-      <span class="small" data-i18n="issuer">[Issuer · year]</span>
+      <span class="title" data-i18n="certName">First Certificate in English · C1</span>
+      <span class="small" data-i18n="issuer">Cambridge English · 2025</span>
     </div>
     <div class="card entry">
       <span class="tag tag-accent">Hobby</span>
       <span class="title" data-i18n="badminton">Competitive badminton</span>
-      <span class="small" data-i18n="club">[Club · level]</span>
+      <span class="small" data-i18n="club">Playing competition since 2024</span>
+    </div>
+    <div class="card entry">
+      <span class="tag tag-accent">Hobby</span>
+      <span class="title" data-i18n="chess">Chess</span>
+      <span class="small" data-i18n="chessLine">I love to play chess</span>
     </div>
     <div class="card entry">
       <span class="tag tag-accent" data-i18n="other">Other</span>
-      <span class="title" data-i18n="otherTitle">[Something else you’ve done]</span>
-      <span class="small" data-i18n="otherLine">[One line about it]</span>
+      <span class="title" data-i18n="aiTitle">Building with AI</span>
+      <span class="small" data-i18n="aiLine">I like making things together with AI tools. This site is one of them.</span>
     </div>
   </div>
 </section>
@@ -222,8 +236,7 @@
       <h2 class="h-small" data-i18n="contactTitle">Looking for an intern? Let’s talk.</h2>
     </div>
     <div class="actions">
-      <!-- TODO: replace href with mailto:you@example.com and fill in "email" in assets/site.js -->
-      <a class="btn btn-primary" href="#contact" data-i18n="email">[Your email]</a>
+      <a class="btn btn-primary" href="mailto:contact@tdeboer.com">contact@tdeboer.com</a>
       <a class="btn btn-outline" href="https://github.com/Thomas-de-Boer" rel="noopener">GitHub</a>
     </div>
   </div>

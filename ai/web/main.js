@@ -3,6 +3,7 @@
 
 import init, { Model, preprocess } from "./pkg/nn_wasm.js";
 import { NetworkView } from "./visualizer.js";
+import { t, onLangChange } from "./i18n.js";
 
 // The two sets of weights for the same network. "claude" always exists;
 // "trained" is optional (the switch is hidden without it).
@@ -14,6 +15,7 @@ const DEFAULT_MODEL = "trained";
 const PAD = 280;
 const BRUSH = 24; // canvas pixels; a digit drawn ~200 px tall becomes ~2.5 px thick at 28×28
 const LIVE_INTERVAL_MS = 100;
+const INK = "#edecf4";
 
 const pad = document.getElementById("pad");
 const padCtx = pad.getContext("2d", { willReadFrequently: true });
@@ -29,14 +31,14 @@ let view = null;
 let sizes = [];
 let hasInk = false;
 let latest = null; // { pixels: Float32Array(784), layers: Float32Array[] }
+let failure = null; // the error that stopped the network from loading, if any
 
 // ---------------------------------------------------------------- drawing
 
 function resetPad() {
-  padCtx.fillStyle = "#000";
-  padCtx.fillRect(0, 0, PAD, PAD);
-  padCtx.strokeStyle = "#fff";
-  padCtx.fillStyle = "#fff";
+  padCtx.clearRect(0, 0, PAD, PAD);
+  padCtx.strokeStyle = INK;
+  padCtx.fillStyle = INK;
   padCtx.lineWidth = BRUSH;
   padCtx.lineCap = "round";
   padCtx.lineJoin = "round";
@@ -118,16 +120,15 @@ function predict(animate) {
   if (!model) return;
   if (!hasInk) {
     latest = null;
-    seenCtx.fillStyle = "#000";
-    seenCtx.fillRect(0, 0, 28, 28);
+    seenCtx.clearRect(0, 0, 28, 28);
     view.clear();
     showAnswer(null);
     return;
   }
-  // The pad is white on black, so the red channel is the ink.
+  // The pad is transparent with light ink, so the alpha channel is the ink.
   const rgba = padCtx.getImageData(0, 0, PAD, PAD).data;
   const ink = new Float32Array(PAD * PAD);
-  for (let i = 0; i < ink.length; i++) ink[i] = rgba[i * 4] / 255;
+  for (let i = 0; i < ink.length; i++) ink[i] = rgba[i * 4 + 3] / 255;
 
   const pixels = preprocess(ink, PAD, PAD);
   const all = model.predict(pixels);
@@ -141,8 +142,7 @@ function predict(animate) {
 
   const image = seenCtx.createImageData(28, 28);
   for (let i = 0; i < 784; i++) {
-    const v = Math.round(pixels[i] * 255);
-    image.data.set([v, v, v, 255], i * 4);
+    image.data.set([237, 236, 244, Math.round(pixels[i] * 255)], i * 4);
   }
   seenCtx.putImageData(image, 0, 0);
 
@@ -154,7 +154,7 @@ function showAnswer(probabilities) {
   if (!probabilities) {
     answerDigit.textContent = "?";
     answerDigit.classList.add("unsure");
-    answerDetail.textContent = "Draw something to start.";
+    answerDetail.textContent = t("drawToStart");
     return;
   }
   const ranked = [...probabilities.keys()].sort((a, b) => probabilities[b] - probabilities[a]);
@@ -162,10 +162,47 @@ function showAnswer(probabilities) {
   const pct = (d) => `${Math.round(probabilities[d] * 100)}%`;
   answerDigit.textContent = String(first);
   answerDigit.classList.toggle("unsure", probabilities[first] < 0.5);
-  let text = probabilities[first] < 0.5 ? `Not sure: ${pct(first)}.` : `${pct(first)} sure.`;
-  if (probabilities[second] >= 0.05) text += ` Could also be a ${second} (${pct(second)}).`;
+  let text = t(probabilities[first] < 0.5 ? "notSure" : "sure", { pct: pct(first) });
+  if (probabilities[second] >= 0.05) text += t("couldBe", { digit: second, pct: pct(second) });
   answerDetail.textContent = text;
 }
+
+// ---------------------------------------------------------------- language
+
+/** Everything this file writes into the page, in the current language. */
+function showTexts() {
+  if (failure) {
+    status.textContent = t("loadFailed");
+    answerDetail.textContent =
+      location.protocol === "file:" ? t("loadFailedFile") : t("loadFailedWhy", { message: failure.message });
+    return;
+  }
+  if (!model) return; // still loading: the page's own "Loading…" text stands
+  status.textContent = t("status", { sizes: sizes.join(" → ") });
+  showAnswer(latest ? latest.layers[latest.layers.length - 1] : null);
+}
+
+onLangChange(() => {
+  showTexts();
+  view?.relabel();
+});
+
+// ------------------------------------------------------------------- theme
+// Shared with the CV page (same localStorage key).
+
+const themeToggle = document.getElementById("theme-toggle");
+const isDark = () => document.documentElement.classList.contains("t-dark");
+themeToggle.setAttribute("aria-checked", String(isDark()));
+themeToggle.addEventListener("click", () => {
+  const next = isDark() ? "light" : "dark";
+  document.documentElement.className = `t-${next}`;
+  try {
+    localStorage.setItem("cv-theme", next);
+  } catch {
+    // Private mode: the choice just isn't remembered.
+  }
+  themeToggle.setAttribute("aria-checked", String(isDark()));
+});
 
 // ------------------------------------------------------------------- start
 
@@ -195,13 +232,12 @@ async function start() {
     });
     setupSwitch();
     selectModel(first, false);
+    // The canvas labels use the site's font; redraw once it has loaded.
+    document.fonts?.ready.then(() => view.requestDraw());
   } catch (error) {
     console.error(error);
-    status.textContent = "Could not load the network.";
-    answerDetail.textContent =
-      location.protocol === "file:"
-        ? "WebAssembly can't load from file://. Serve this folder over HTTP (see the README)."
-        : `Could not load the network: ${error.message}`;
+    failure = error;
+    showTexts();
     return;
   }
   if (new URLSearchParams(location.search).has("dev")) startDevMode();
@@ -236,7 +272,7 @@ function selectModel(id, animate) {
 
   for (const radio of document.querySelectorAll('input[name="model"]')) radio.checked = radio.value === id;
   for (const text of document.querySelectorAll("[data-model-text]")) text.hidden = text.dataset.modelText !== id;
-  status.textContent = `${sizes.join(" → ")} neurons · Rust → WebAssembly`;
+  showTexts();
 
   const url = new URL(location.href);
   url.searchParams.set("model", id);
