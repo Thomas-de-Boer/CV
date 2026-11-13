@@ -1,4 +1,4 @@
-/target
-/data
-/web/pkg
+/ai/target
+/ai/data
+/ai/web/pkg
 samples*.json

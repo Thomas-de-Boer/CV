@@ -27,24 +27,41 @@ jobs:
           rustup target add wasm32-unknown-unknown
 
       - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: ai
 
       - name: Install wasm-pack
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
       - name: Test
+        working-directory: ai
         run: cargo test --release
 
       # Weights are committed; nothing is generated or trained here.
       - name: Build the WebAssembly module
+        working-directory: ai
         run: wasm-pack build nn-wasm --target web --release --out-dir ../web/pkg
 
-      - name: Remove files Pages doesn't need
-        run: rm -f web/pkg/.gitignore web/pkg/package.json
+      # The project cards follow what is pinned on the GitHub profile. If
+      # GitHub can't be reached, the committed assets/projects.json is used.
+      - name: Refresh the pinned projects
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash tools/update-projects.sh || echo "::warning::Could not refresh the pinned projects; using the committed list."
+
+      # The published site: the CV page at the root, the full demo under ai/web/.
+      - name: Assemble the site
+        run: |
+          mkdir -p _site/ai
+          cp index.html _site/
+          cp -r assets _site/assets
+          cp -r ai/web _site/ai/web
+          rm -f _site/ai/web/pkg/.gitignore _site/ai/web/pkg/package.json
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: web
+          path: _site
 
   deploy:
     needs: build

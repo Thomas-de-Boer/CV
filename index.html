@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en" class="t-dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thomas de Boer — CV</title>
+  <meta name="description" content="Thomas de Boer, Software Development student at Nova College. Projects, a neural network built from scratch in Rust, work and school.">
+  <meta name="color-scheme" content="dark light">
+  <script>
+    // Theme and language are set before first paint so the page doesn't flash.
+    (function () {
+      var theme = null, lang = null;
+      try { theme = localStorage.getItem("cv-theme"); lang = localStorage.getItem("cv-lang"); } catch (e) {}
+      if (theme !== "dark" && theme !== "light") {
+        theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+      }
+      if (lang !== "en" && lang !== "nl") {
+        lang = (navigator.language || "").toLowerCase().indexOf("nl") === 0 ? "nl" : "en";
+      }
+      document.documentElement.className = "t-" + theme;
+      document.documentElement.lang = lang;
+    })();
+  </script>
+  <link rel="preload" href="assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav wrap" aria-label="Main">
+    <a class="brand" href="#top">Thomas de Boer</a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#projects" data-i18n="navProjects">Projects</a>
+        <a href="#neural-network" data-i18n="navNN">Neural network</a>
+        <a href="#about" data-i18n="navWork">Work &amp; school</a>
+        <a href="#more" data-i18n="navMore">More</a>
+        <a href="#contact" class="is-primary">Contact</a>
+      </div>
+      <div class="nav-controls">
+        <div class="lang-switch" role="group" aria-label="Language" data-i18n-aria-label="langLabel">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="nl" aria-pressed="false">NL</button>
+        </div>
+        <button type="button" id="theme-toggle" class="theme-toggle" role="switch" aria-checked="true" aria-label="Dark mode" data-i18n-aria-label="darkLabel">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+          <span class="toggle-track"><span class="toggle-knob"></span></span>
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section id="top" class="hero wrap">
+  <div class="hero-main">
+    <div class="hero-meta">
+      <span class="badge"><span class="badge-dot" aria-hidden="true"></span><span data-i18n="badge">Available for internship</span></span>
+      <span class="label">Software developer · MBO 4</span>
+    </div>
+    <h1>Thomas de Boer</h1>
+    <p class="lead" data-i18n="intro">Second-year Software Development student at Nova College. I like the parts you don’t see: backends, databases and how systems fit together.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#projects" data-i18n="cta1">See my projects</a>
+      <a class="btn btn-outline" href="#neural-network" data-i18n="cta2">Try the neural network</a>
+    </div>
+  </div>
+  <div class="card hero-card">
+    <span class="label" data-i18n="langsTitle">Languages I work in</span>
+    <div class="tags tags-wide">
+      <span class="tag">Python</span>
+      <span class="tag">Java</span>
+      <span class="tag">C#</span>
+      <span class="tag">JavaScript</span>
+      <span class="tag">PHP</span>
+      <span class="tag">Rust</span>
+    </div>
+    <span class="small" data-i18n="focus">Focus: backend, databases, systems architecture.</span>
+  </div>
+</section>
+
+<!-- PROJECTS SLIDER -->
+<section id="projects" class="section wrap" aria-labelledby="projects-title">
+  <div class="section-head section-head-row">
+    <div class="head-text">
+      <span class="eyebrow">01 — <span data-i18n="navProjects">Projects</span></span>
+      <h2 id="projects-title" data-i18n="projTitle">Things I’ve built</h2>
+    </div>
+    <div class="slider-controls">
+      <span class="count" id="project-count"></span>
+      <button type="button" id="projects-prev" class="icon-btn" aria-label="Previous projects" data-i18n-aria-label="prev">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+      </button>
+      <button type="button" id="projects-next" class="icon-btn icon-btn-primary" aria-label="Next projects" data-i18n-aria-label="next">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+      </button>
+    </div>
+  </div>
+  <div class="track" id="projects-track" tabindex="0" aria-labelledby="projects-title"></div>
+</section>
+
+<!-- NEURAL NETWORK SHOWCASE (deep band, same in both themes) -->
+<section id="neural-network" class="nn" aria-labelledby="nn-title">
+  <div class="nn-inner wrap">
+    <div class="nn-text">
+      <span class="eyebrow">02 — <span data-i18n="navNN">Neural network</span></span>
+      <h2 id="nn-title" data-i18n="nnTitle">Draw a digit. Watch it think.</h2>
+      <p class="lead" data-i18n="nnBody">A neural network built from scratch, running in your browser. Draw a number on the pad and see each layer light up before it makes its guess.</p>
+      <div class="tags">
+        <span class="tag">Rust</span>
+        <span class="tag">WebAssembly</span>
+        <span class="tag" data-i18n="noLibs">No ML libraries</span>
+      </div>
+      <div class="actions">
+        <a class="btn btn-primary" href="ai/web/" data-i18n="openDemo">Open full demo</a>
+        <a class="btn btn-text" href="ai/web/#how" data-i18n="how">How it works →</a>
+      </div>
+    </div>
+
+    <div class="demo" id="demo">
+      <div class="demo-head">
+        <span class="label" data-i18n="demoLabel">Live demo</span>
+        <button type="button" id="demo-clear" class="demo-clear" data-i18n="clear">Clear</button>
+      </div>
+      <div class="demo-body">
+        <div class="demo-pad">
+          <canvas id="demo-canvas" width="280" height="280" aria-label="Drawing pad" data-i18n-aria-label="pad"></canvas>
+          <span class="demo-caption" data-i18n="input">Draw a digit here · 0–9</span>
+        </div>
+        <div class="demo-layers" id="demo-layers" aria-hidden="true"></div>
+        <div class="demo-out" aria-live="polite">
+          <div id="demo-bars" class="demo-bars" aria-hidden="true"></div>
+          <div class="demo-guess">
+            <span class="demo-caption" data-i18n="guess">Guess</span>
+            <span id="demo-guess" class="demo-digit is-empty">?</span>
+          </div>
+          <p id="demo-error" class="demo-error" data-i18n="demoError" hidden>The demo could not load here. Open the full demo instead.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK & SCHOOL -->
+<section id="about" class="section section-about wrap" aria-labelledby="about-title">
+  <div class="section-head narrow">
+    <span class="eyebrow">03 — <span data-i18n="navWork">Work &amp; school</span></span>
+    <h2 id="about-title" data-i18n="wsTitle">Where I’m at</h2>
+    <p class="lead" data-i18n="wsBody">I’m heading towards backend development, databases and systems architecture, with a long-term interest in AI and machine learning.</p>
+  </div>
+  <div class="timeline">
+    <div class="timeline-col">
+      <h3 class="label" data-i18n="school">School</h3>
+      <div class="card entry">
+        <span class="label when">[Year] — <span data-i18n="now">Now</span></span>
+        <span class="title">MBO 4 Software Development</span>
+        <span class="small" data-i18n="nova">Nova College · second year</span>
+      </div>
+      <div class="card entry">
+        <span class="label when">[Year] — [Year]</span>
+        <span class="title" data-i18n="prevSchool">[Previous school]</span>
+        <span class="small" data-i18n="level">[Level / diploma]</span>
+      </div>
+    </div>
+    <div class="timeline-col">
+      <h3 class="label" data-i18n="work">Work</h3>
+      <div class="card entry">
+        <span class="label when">[Year] — <span data-i18n="now">Now</span></span>
+        <span class="title">Vomar Voordeelmarkt</span>
+        <span class="small" data-i18n="vomarRole">Part-time · [your role]</span>
+      </div>
+      <div class="card entry entry-next">
+        <span class="label when" data-i18n="nextLabel">Next</span>
+        <span class="title" data-i18n="internTitle">Internship — your company?</span>
+        <span class="small" data-i18n="internBody">Looking for a blokstage in software development.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEYOND SCHOOL -->
+<section id="more" class="section section-more wrap" aria-labelledby="more-title">
+  <div class="section-head">
+    <span class="eyebrow">04 — <span data-i18n="moreEyebrow">Beyond school</span></span>
+    <h2 id="more-title" data-i18n="moreTitle">Hobbies, certificates &amp; more</h2>
+  </div>
+  <div class="more-grid">
+    <div class="card entry">
+      <span class="tag" data-i18n="cert">Certificate</span>
+      <span class="title" data-i18n="certName">[Certificate name]</span>
+      <span class="small" data-i18n="issuer">[Issuer · year]</span>
+    </div>
+    <div class="card entry">
+      <span class="tag" data-i18n="cert">Certificate</span>
+      <span class="title" data-i18n="certName">[Certificate name]</span>
+      <span class="small" data-i18n="issuer">[Issuer · year]</span>
+    </div>
+    <div class="card entry">
+      <span class="tag tag-accent">Hobby</span>
+      <span class="title" data-i18n="badminton">Competitive badminton</span>
+      <span class="small" data-i18n="club">[Club · level]</span>
+    </div>
+    <div class="card entry">
+      <span class="tag tag-accent" data-i18n="other">Other</span>
+      <span class="title" data-i18n="otherTitle">[Something else you’ve done]</span>
+      <span class="small" data-i18n="otherLine">[One line about it]</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- CONTACT -->
+<footer id="contact" class="site-footer">
+  <div class="footer-inner wrap">
+    <div class="head-text">
+      <span class="label">05 — Contact</span>
+      <h2 class="h-small" data-i18n="contactTitle">Looking for an intern? Let’s talk.</h2>
+    </div>
+    <div class="actions">
+      <!-- TODO: replace href with mailto:you@example.com and fill in "email" in assets/site.js -->
+      <a class="btn btn-primary" href="#contact" data-i18n="email">[Your email]</a>
+      <a class="btn btn-outline" href="https://github.com/Thomas-de-Boer" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script type="module" src="assets/demo.js"></script>
+</body>
+</html>

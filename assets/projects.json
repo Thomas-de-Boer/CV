@@ -1,0 +1,62 @@
+[
+  {
+    "description": "AirBlitz is an air hockey game developed in Python using the Pygame library",
+    "language": "Python",
+    "name": "Air-Hockey",
+    "topics": [
+      "airhockey",
+      "pygame",
+      "python"
+    ],
+    "url": "https://github.com/Thomas-de-Boer/Air-Hockey"
+  },
+  {
+    "description": "An Android app with fun widgets",
+    "language": "Java",
+    "name": "WidgetApp",
+    "topics": [],
+    "url": "https://github.com/Thomas-de-Boer/WidgetApp"
+  },
+  {
+    "description": "A client-side replacement for the advancements screen with search, filters and a detailed view of which criteria you have completed and which are still missing. Works with BACAP.",
+    "language": "Java",
+    "name": "Advancement-screen-Revamped",
+    "topics": [
+      "fabric",
+      "java",
+      "minecraft",
+      "mod"
+    ],
+    "url": "https://github.com/Thomas-de-Boer/Advancement-screen-Revamped"
+  },
+  {
+    "description": "Noti App: private Android app to alert the whole family with one tap",
+    "language": "Kotlin",
+    "name": "NotiApp",
+    "topics": [],
+    "url": "https://github.com/Thomas-de-Boer/NotiApp"
+  },
+  {
+    "description": "3D Unity escape room game with a time-shifting mechanic",
+    "language": "C#",
+    "name": "ForWard",
+    "topics": [
+      "escape-room",
+      "game",
+      "puzzle-game",
+      "time-shifting"
+    ],
+    "url": "https://github.com/Thomas-de-Boer/ForWard"
+  },
+  {
+    "description": "C# form application to manage a phone inventory system",
+    "language": "C#",
+    "name": "SoundSharp",
+    "topics": [
+      "csharp",
+      "formapplication",
+      "inventory-system"
+    ],
+    "url": "https://github.com/Thomas-de-Boer/SoundSharp"
+  }
+]
