@@ -101,7 +101,7 @@ h2 {
 
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .tag {
-  font: 400 13px/22px var(--font-mono);
+  font: 500 13px/22px var(--font-body);
   background: var(--psoft);
   color: var(--on-psoft);
   border-radius: 3px;
@@ -376,7 +376,8 @@ h2 {
   display: flex;
   align-items: center;
   gap: 8px;
-  font: 400 13px/16px var(--font-mono);
+  font: 400 13px/16px var(--font-body);
+  font-variant-numeric: tabular-nums;
 }
 .demo-bar > span:first-child { width: 12px; color: #a3a3a0; }
 .demo-bar-track { flex-grow: 1; height: 10px; background: #222; border-radius: 2px; overflow: hidden; }

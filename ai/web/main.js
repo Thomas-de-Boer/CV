@@ -142,7 +142,7 @@ function predict(animate) {
 
   const image = seenCtx.createImageData(28, 28);
   for (let i = 0; i < 784; i++) {
-    image.data.set([237, 236, 244, Math.round(pixels[i] * 255)], i * 4);
+    image.data.set([236, 236, 234, Math.round(pixels[i] * 255)], i * 4);
   }
   seenCtx.putImageData(image, 0, 0);
 

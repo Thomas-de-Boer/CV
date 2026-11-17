@@ -125,7 +125,7 @@ button.danger { color: var(--accent-text); }
   align-items: baseline;
   gap: 4px 12px;
 }
-.network-head .hint { font-family: var(--font-mono); font-size: 13px; }
+.network-head .hint { font-size: 13px; }
 
 #net-wrap { position: relative; }
 

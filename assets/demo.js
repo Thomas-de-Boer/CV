@@ -179,7 +179,7 @@ function show(pixels, layers) {
   for (let i = 0; i < 784; i++) {
     const v = pixels ? pixels[i] : 0;
     // Same colours as the pad: ink on the dark surface.
-    image.data.set([27 + v * 210, 26 + v * 210, 40 + v * 204, 255], i * 4);
+    image.data.set([34 + v * 202, 34 + v * 202, 34 + v * 200, 255], i * 4);
   }
   seenCtx.putImageData(image, 0, 0);
 
