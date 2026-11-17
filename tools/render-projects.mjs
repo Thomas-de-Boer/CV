@@ -15,14 +15,14 @@ const MAX_PROJECTS = 6; // same as assets/site.js
 const escape = (text) =>
   String(text).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
-function card({ cover, kind, title, desc, tags = [], href, linkText, image }) {
-  const coverHtml = image ? `<img alt="" loading="lazy" src="${escape(image)}">` : escape(cover);
+function card({ kind, title, desc, tags = [], href, linkText, image }) {
+  const coverHtml = image ? `<div class="project-cover"><img alt="" loading="lazy" src="${escape(image)}"></div>` : "";
   const kindHtml = kind ? `<span class="label">${escape(kind)}</span>` : "";
   const tagsHtml = tags.length
     ? `<div class="tags">${tags.map((tag) => `<span class="tag">${escape(tag)}</span>`).join("")}</div>`
     : "";
   return (
-    `<article class="card project"><div class="project-cover">${coverHtml}</div>` +
+    `<article class="card project">${coverHtml}` +
     `<div class="project-body">${kindHtml}<h3 class="title">${escape(title)}</h3><p>${escape(desc)}</p>${tagsHtml}` +
     `<a class="project-link" href="${escape(href)}" rel="noopener">${escape(linkText)}</a></div></article>`
   );
@@ -31,23 +31,21 @@ function card({ cover, kind, title, desc, tags = [], href, linkText, image }) {
 const repos = JSON.parse(readFileSync("assets/projects.json", "utf8")).slice(0, MAX_PROJECTS);
 const cards = repos.map((repo) =>
   card({
-    cover: repo.name,
     kind: repo.language,
     title: repo.name,
     desc: repo.description || "No description yet.",
     tags: (repo.topics || []).slice(0, 4),
     href: repo.url,
-    linkText: "View on GitHub →",
+    linkText: "View on GitHub",
     image: repo.image,
   }),
 );
 cards.push(
   card({
-    cover: "GitHub",
     title: "More on GitHub",
     desc: "All my public repositories are on my GitHub profile.",
     href: `https://github.com/${GITHUB_USER}`,
-    linkText: "Open my GitHub profile →",
+    linkText: "Open my GitHub profile",
   }),
 );
 

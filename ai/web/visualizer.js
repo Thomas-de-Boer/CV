@@ -4,11 +4,11 @@
 // Colours of the CV site. The network panel is dark in both themes.
 import { t, formatNumber } from "./i18n.js";
 
-const WARM = [35, 203, 180]; // active, pushes a neuron on
-const COOL = [167, 139, 250]; // holds a neuron back
-const ACCENT = [239, 102, 62]; // the answer
-const OFF = [46, 44, 64];
-const FONT = '"IBM Plex Sans", system-ui, sans-serif';
+const WARM = [138, 168, 255]; // active, pushes a neuron on
+const COOL = [224, 112, 112]; // holds a neuron back
+const ACCENT = [255, 209, 102]; // the answer
+const OFF = [44, 44, 44];
+const FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif';
 const REVEAL_MS = 900;
 const TOP_CONNECTIONS = 3;
 const HOVER_CONNECTIONS = 6;
@@ -297,7 +297,7 @@ export class NetworkView {
     for (let i = 0; i < 784; i++) {
       const w = weights[offset + i] / max;
       const strength = Math.pow(Math.abs(w), 0.6);
-      let colour = mix([18, 17, 28], w >= 0 ? WARM : COOL, strength);
+      let colour = mix([15, 15, 15], w >= 0 ? WARM : COOL, strength);
       if (this.input && this.input[i] > 0.3) colour = mix(colour, [255, 255, 255], 0.55 * this.input[i]);
       image.data.set([colour[0], colour[1], colour[2], 255], i * 4);
     }
@@ -347,7 +347,7 @@ export class NetworkView {
     const { ctx } = this;
     const { sizes, titles } = this.model;
     ctx.font = `${this.narrow ? 10 : 12}px ${FONT}`;
-    ctx.fillStyle = "#a09eb4";
+    ctx.fillStyle = "#a3a3a0";
     ctx.textBaseline = "top";
     ctx.textAlign = "center";
     for (let k = 0; k < sizes.length; k++) {
@@ -362,17 +362,17 @@ export class NetworkView {
 
   drawInputGrid() {
     const { ctx, grid } = this;
-    ctx.fillStyle = "#1b1a28";
+    ctx.fillStyle = "#1a1a1a";
     ctx.fillRect(grid.x, grid.y, grid.size, grid.size);
     if (this.input) {
       for (let i = 0; i < 784; i++) {
         const v = this.input[i];
         if (v <= 0.02) continue;
-        ctx.fillStyle = rgba([237, 236, 244], v);
+        ctx.fillStyle = rgba([236, 236, 234], v);
         ctx.fillRect(grid.x + (i % 28) * grid.cell, grid.y + Math.floor(i / 28) * grid.cell, grid.cell, grid.cell);
       }
     }
-    ctx.strokeStyle = "#2e2c40";
+    ctx.strokeStyle = "#2c2c2c";
     ctx.lineWidth = 1;
     ctx.strokeRect(grid.x - 0.5, grid.y - 0.5, grid.size + 1, grid.size + 1);
   }
@@ -430,7 +430,7 @@ export class NetworkView {
         ctx.fill();
       }
       ctx.fillStyle = rgba(mix(OFF, level > 0.85 ? mix(WARM, [255, 255, 255], (level - 0.85) * 3) : WARM, Math.min(1, level / 0.85)), 1);
-      ctx.strokeStyle = hovered ? "#ffffff" : level > 0.05 ? rgba(WARM, 0.9) : "#4a4862";
+      ctx.strokeStyle = hovered ? "#ffffff" : level > 0.05 ? rgba(WARM, 0.9) : "#4a4a4a";
       ctx.lineWidth = hovered ? 2 : 1;
       ctx.beginPath();
       ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
@@ -452,7 +452,7 @@ export class NetworkView {
       const hovered = this.hover && this.hover.layer === k && this.hover.index === i;
 
       ctx.fillStyle = rgba(mix(OFF, winner ? ACCENT : WARM, clamp01(prob)), 1);
-      ctx.strokeStyle = hovered ? "#ffffff" : winner ? rgba(ACCENT, 1) : "#4a4862";
+      ctx.strokeStyle = hovered ? "#ffffff" : winner ? rgba(ACCENT, 1) : "#4a4a4a";
       ctx.lineWidth = winner || hovered ? 2.5 : 1;
       ctx.beginPath();
       ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
@@ -462,18 +462,18 @@ export class NetworkView {
       ctx.font = `${winner ? "700" : "500"} ${Math.round(r * 1.15)}px ${FONT}`;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillStyle = prob > 0.55 ? "#12111c" : winner ? "#ffffff" : "#a09eb4";
+      ctx.fillStyle = prob > 0.55 ? "#10131c" : winner ? "#ffffff" : "#a3a3a0";
       ctx.fillText(String(i), p.x, p.y + 0.5);
 
       const bx = p.x + r + 8;
-      ctx.fillStyle = "#1b1a28";
+      ctx.fillStyle = "#1a1a1a";
       ctx.fillRect(bx, p.y - 3, barWidth, 6);
       ctx.fillStyle = winner ? rgba(ACCENT, 1) : rgba(WARM, 0.55);
       ctx.fillRect(bx, p.y - 3, barWidth * clamp01(prob), 6);
       if (!this.narrow && acts) {
         ctx.font = `11px ${FONT}`;
         ctx.textAlign = "left";
-        ctx.fillStyle = winner ? "#edecf4" : "#a09eb4";
+        ctx.fillStyle = winner ? "#ececea" : "#a3a3a0";
         ctx.fillText(`${Math.round(prob * 100)}%`, bx + barWidth + 6, p.y + 0.5);
       }
     });

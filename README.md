@@ -1,4 +1,4 @@
-# Thomas de Boer — CV website
+# Thomas de Boer: CV website
 
 A static CV site with a small, working neural-network demo on the page. No
 framework and no backend.
@@ -33,7 +33,12 @@ Then open <http://localhost:8000>. The full demo is at
   upload one on GitHub under the repository's **Settings → Social preview**
   (1280×640 works best); it appears on the card after the next deploy.
 - `assets/og-image.png` is the picture shown when the site's link is shared;
-  its source is `tools/og-image.html`.
+  its source is `tools/og-image.html`. `assets/apple-touch-icon.png` comes from
+  `tools/touch-icon.html` the same way.
+- To add a photo: put a square photo (at least 600×600) at `assets/photo.jpg`
+  and remove the comment markers around `hero-photo` in `index.html`.
+- Headings use Archivo (`assets/fonts/archivo-latin.woff2`, SIL Open Font
+  License in `assets/fonts/OFL.txt`); everything else uses the system fonts.
 
 ## Deploying
 

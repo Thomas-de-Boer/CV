@@ -15,7 +15,7 @@
   padding: 24px;
   min-width: 0; /* let panels shrink inside the grid on narrow screens */
 }
-.panel h2.label { margin-bottom: 16px; }
+.panel h2.label { margin-bottom: 16px; font: 600 15px/22px var(--font-body); color: var(--ink); }
 
 .hint { margin: 0; font-size: 14px; line-height: 22px; color: var(--muted); }
 
@@ -28,7 +28,7 @@ button:not(.theme-toggle) {
   border: 1px solid var(--line-strong);
   background: transparent;
   color: var(--ink);
-  font: 400 14px/22px var(--font-mono);
+  font: 500 14px/22px var(--font-body);
   cursor: pointer;
 }
 button:not(.theme-toggle):hover { border-color: var(--ink); }
@@ -54,7 +54,7 @@ button.danger { color: var(--accent-text); }
   padding: 10px 16px;
   border-radius: 6px;
   color: var(--muted);
-  font: 500 13px/20px var(--font-mono);
+  font: 600 14px/20px var(--font-body);
   white-space: nowrap;
 }
 .switch label:hover span { color: var(--ink); }
@@ -76,16 +76,16 @@ button.danger { color: var(--accent-text); }
 /* The drawing surfaces are dark in both themes, like on the CV page. */
 #pad, #seen {
   display: block;
-  border: 1px solid #6a6882;
+  border: 1px solid #5c5c5c;
   border-radius: 8px;
-  background-color: #1b1a28;
+  background-color: #222222;
 }
 
 #pad {
   width: 280px;
   max-width: 100%;
   aspect-ratio: 1;
-  background-image: linear-gradient(#2e2c40 1px, transparent 1px), linear-gradient(90deg, #2e2c40 1px, transparent 1px);
+  background-image: linear-gradient(#2c2c2c 1px, transparent 1px), linear-gradient(90deg, #2c2c2c 1px, transparent 1px);
   background-size: 12.5% 12.5%;
   cursor: crosshair;
   touch-action: none; /* drawing must not scroll the page */
@@ -111,11 +111,12 @@ button.danger { color: var(--accent-text); }
 /* ------------------------------------------------------------ the network */
 
 .network {
-  background: #12111c;
-  border-color: #2e2c40;
-  color: #edecf4;
+  background: #1a1a1a;
+  border-color: #2c2c2c;
+  color: #ececea;
 }
-.network .label, .network .hint { color: #a09eb4; }
+.network .label, .network .hint { color: #a3a3a0; }
+.network h2.label { color: #ececea; }
 
 .network-head {
   display: flex;
@@ -135,16 +136,16 @@ button.danger { color: var(--accent-text); }
   z-index: 2;
   max-width: 240px;
   padding: 12px;
-  background: #1b1a28f2;
-  border: 1px solid #6a6882;
+  background: #1a1a1af2;
+  border: 1px solid #5c5c5c;
   border-radius: 8px;
   font-size: 13px;
   line-height: 20px;
   pointer-events: none;
   box-shadow: 0 8px 24px #0008;
 }
-#tooltip .name { font: 500 15px/22px var(--font-display); }
-#tooltip .sub { color: #a09eb4; }
+#tooltip .name { font: 600 15px/22px var(--font-display); }
+#tooltip .sub { color: #a3a3a0; }
 #tooltip canvas {
   display: block;
   width: 112px;
@@ -155,8 +156,8 @@ button.danger { color: var(--accent-text); }
 }
 #tooltip ul { list-style: none; margin: 6px 0 0; padding: 0; }
 #tooltip li { display: flex; justify-content: space-between; gap: 12px; }
-#tooltip .plus { color: #23cbb4; }
-#tooltip .minus { color: #a78bfa; }
+#tooltip .plus { color: #8aa8ff; }
+#tooltip .minus { color: #e07070; }
 
 .legend { margin-top: 12px; }
 
@@ -168,8 +169,8 @@ button.danger { color: var(--accent-text); }
   border-radius: 2px;
   margin: 0 4px 0 2px;
 }
-.swatch.warm { background: #23cbb4; }
-.swatch.cool { background: #a78bfa; margin-left: 12px; }
+.swatch.warm { background: #8aa8ff; }
+.swatch.cool { background: #e07070; margin-left: 12px; }
 
 /* ---------------------------------------------------------------- the rest */
 

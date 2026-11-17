@@ -9,63 +9,57 @@
   var STRINGS = {
     en: {
       skip: "Skip to content",
-      navProjects: "Projects", navNN: "Neural network", navWork: "Work & school", navMore: "More",
+      navProjects: "Projects", navNN: "Neural network", navWork: "Work & school", navMore: "Other",
       langLabel: "Language", darkLabel: "Dark mode",
-      badge: "Available for final internship · from August 2027",
-      intro: "Second-year Software Development student at Nova College. I like the parts you don’t see: backends, databases and how systems fit together.",
-      cta1: "See my projects", cta2: "Try the neural network",
-      langsTitle: "Languages I work in", focus: "Trying a bit of everything right now; backend is where I want to go.",
-      projTitle: "Things I’ve built", project: "project", projects: "projects",
-      prev: "Previous projects", next: "Next projects", viewGh: "View on GitHub →",
+      intro: "I’m a second-year Software Development student (MBO 4) at Nova College. I’m most interested in backend work: databases and how systems fit together. I’m looking for a final internship from August 2027.",
+      langs: "I’ve worked in Java, Python, C#, Rust and JavaScript, and I’m still trying a bit of everything.",
+      cta1: "Projects", cta2: "Neural network demo",
+      project: "project", projects: "projects",
+      prev: "Previous projects", next: "Next projects", viewGh: "View on GitHub",
       noDesc: "No description yet.", allTitle: "More on GitHub",
-      allDesc: "All my public repositories are on my GitHub profile.", allLink: "Open my GitHub profile →",
-      nnTitle: "Draw a number. Watch it think.",
-      nnBody: "A neural network built from scratch, running in your browser. Draw a number on the pad and see each layer light up before it makes its guess.",
-      noLibs: "No ML libraries", openDemo: "Open full demo",
-      demoLabel: "Live demo", clear: "Clear", pad: "Drawing pad", input: "Draw a number here · 0–9", guess: "Guess",
+      allDesc: "All my public repositories are on my GitHub profile.", allLink: "Open my GitHub profile",
+      nnTitle: "A neural network I wrote from scratch",
+      nnBody: "It’s written in Rust without any machine learning libraries and runs in your browser as WebAssembly. Draw a digit on the pad and you can see what each layer does before it guesses.",
+      openDemo: "Open the full demo",
+      demoLabel: "Try it", clear: "Clear", pad: "Drawing pad", input: "Draw a digit here (0–9)", guess: "Guess",
       demoError: "The demo could not load here. Open the full demo instead.",
-      wsTitle: "Where I’m at",
-      wsBody: "I’m heading towards backend development, databases and systems architecture, with a long-term interest in AI and machine learning.",
-      school: "School", work: "Work", now: "Now",
-      nova: "Nova College · second year", prevSchool: "Dali College", level: "Mavo",
-      vomarRole: "Part-time · Shelf stocker / Cashier", motiRole: "Internship (blokstage) · working on a planning tool", nextLabel: "Next",
-      internTitle: "Internship — your company?", internBody: "Looking for a final internship (eindstage) in software development, from around August 2027.",
-      moreEyebrow: "Beyond school", moreTitle: "Hobbies, certificates & more",
-      cert: "Certificate", certName: "First Certificate in English · C1", issuer: "Cambridge English · 2025",
-      badminton: "Competitive badminton", club: "Playing competition since 2024",
+      wsBody: "I want to grow into backend development, databases and systems architecture, and later on AI and machine learning.",
+      school: "School", work: "Work", now: "now",
+      nova: "Nova College, second year", prevSchool: "Dali College", level: "Mavo",
+      vomarRole: "Part-time shelf stocker and cashier", motiRole: "Internship (blokstage), working on a planning tool",
+      internTitle: "Final internship", internBody: "From around August 2027. I’m still looking for a company.",
+      cert: "Certificate", certName: "Cambridge First Certificate in English (C1)",
+      badminton: "Badminton", club: "Playing in competition since 2024",
       chess: "Chess", chessLine: "I love to play chess",
       other: "Other", aiTitle: "Building with AI", aiLine: "I like making things together with AI tools. This site is one of them.",
-      contactTitle: "Looking for an intern? Let’s talk."
+      contactBody: "Email is the easiest way to reach me."
     },
     nl: {
       skip: "Naar de inhoud",
-      navProjects: "Projecten", navNN: "Neuraal netwerk", navWork: "Werk & school", navMore: "Meer",
+      navProjects: "Projecten", navNN: "Neuraal netwerk", navWork: "Werk & school", navMore: "Overig",
       langLabel: "Taal", darkLabel: "Donkere modus",
-      badge: "Beschikbaar voor eindstage · vanaf augustus 2027",
-      intro: "Tweedejaars student Software Development aan het Nova College. Ik hou van de onderdelen die je niet ziet: backends, databases en hoe systemen in elkaar grijpen.",
-      cta1: "Bekijk mijn projecten", cta2: "Probeer het neurale netwerk",
-      langsTitle: "Talen waarin ik programmeer", focus: "Ik probeer nu van alles uit; backend is waar ik naartoe wil.",
-      projTitle: "Wat ik heb gebouwd", project: "project", projects: "projecten",
-      prev: "Vorige projecten", next: "Volgende projecten", viewGh: "Bekijk op GitHub →",
+      intro: "Ik ben tweedejaars student Software Development (MBO 4) aan het Nova College. Ik ben het meest geïnteresseerd in backend: databases en hoe systemen in elkaar grijpen. Vanaf augustus 2027 zoek ik een eindstage.",
+      langs: "Ik heb gewerkt met Java, Python, C#, Rust en JavaScript, en ik probeer nog van alles uit.",
+      cta1: "Projecten", cta2: "Demo neuraal netwerk",
+      project: "project", projects: "projecten",
+      prev: "Vorige projecten", next: "Volgende projecten", viewGh: "Bekijk op GitHub",
       noDesc: "Nog geen beschrijving.", allTitle: "Meer op GitHub",
-      allDesc: "Al mijn openbare repositories staan op mijn GitHub-profiel.", allLink: "Open mijn GitHub-profiel →",
-      nnTitle: "Teken een cijfer. Kijk hoe het denkt.",
-      nnBody: "Een neuraal netwerk, vanaf nul gebouwd, dat in je browser draait. Teken een cijfer en zie elke laag oplichten voordat het een gok doet.",
-      noLibs: "Geen ML-libraries", openDemo: "Open de volledige demo",
-      demoLabel: "Live demo", clear: "Wissen", pad: "Tekenvlak", input: "Teken hier een cijfer · 0–9", guess: "Gok",
+      allDesc: "Al mijn openbare repositories staan op mijn GitHub-profiel.", allLink: "Open mijn GitHub-profiel",
+      nnTitle: "Een neuraal netwerk dat ik zelf heb geschreven",
+      nnBody: "Het is geschreven in Rust zonder machine-learning-libraries en draait als WebAssembly in je browser. Teken een cijfer en je ziet wat elke laag doet voordat het een gok doet.",
+      openDemo: "Open de volledige demo",
+      demoLabel: "Probeer het", clear: "Wissen", pad: "Tekenvlak", input: "Teken hier een cijfer (0–9)", guess: "Gok",
       demoError: "De demo kon hier niet laden. Open in plaats daarvan de volledige demo.",
-      wsTitle: "Waar ik nu sta",
-      wsBody: "Ik richt me op backend-development, databases en systeemarchitectuur, met op de lange termijn interesse in AI en machine learning.",
-      school: "Opleiding", work: "Werk", now: "Nu",
-      nova: "Nova College · tweede jaar", prevSchool: "Dali College", level: "Mavo",
-      vomarRole: "Bijbaan · Vakkenvuller / Kassamedewerker", motiRole: "Blokstage · werk aan een planningstool", nextLabel: "Volgende stap",
-      internTitle: "Stage — bij jouw bedrijf?", internBody: "Op zoek naar een eindstage in software development, vanaf ongeveer augustus 2027.",
-      moreEyebrow: "Naast school", moreTitle: "Hobby’s, certificaten & meer",
-      cert: "Certificaat", certName: "First Certificate in English · C1", issuer: "Cambridge English · 2025",
-      badminton: "Competitiebadminton", club: "Speel competitie sinds 2024",
+      wsBody: "Ik wil verder in backend-development, databases en systeemarchitectuur, en later ook AI en machine learning.",
+      school: "Opleiding", work: "Werk", now: "nu",
+      nova: "Nova College, tweede jaar", prevSchool: "Dali College", level: "Mavo",
+      vomarRole: "Bijbaan als vakkenvuller en kassamedewerker", motiRole: "Blokstage, werk aan een planningstool",
+      internTitle: "Eindstage", internBody: "Vanaf ongeveer augustus 2027. Ik zoek nog een bedrijf.",
+      cert: "Certificaat", certName: "Cambridge First Certificate in English (C1)",
+      badminton: "Badminton", club: "Speel competitie sinds 2024",
       chess: "Schaken", chessLine: "Ik schaak graag",
       other: "Overig", aiTitle: "Bouwen met AI", aiLine: "Ik maak graag dingen samen met AI-tools. Deze site is er één van.",
-      contactTitle: "Op zoek naar een stagiair? Laten we praten."
+      contactBody: "Mailen is de makkelijkste manier om me te bereiken."
     }
   };
 
@@ -113,7 +107,7 @@
   function syncTheme() {
     themeToggle.setAttribute("aria-checked", String(isDark()));
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.content = isDark() ? "#12111c" : "#f5f3ee";
+    if (meta) meta.content = isDark() ? "#151515" : "#faf9f6";
   }
 
   themeToggle.addEventListener("click", function () {
@@ -136,19 +130,19 @@
   }
 
   // `image` is the picture set on GitHub (repository Settings → Social preview);
-  // without one, or if it fails to load, the cover shows the name instead.
-  function projectCard(cover, kind, title, desc, tags, href, linkText, image) {
+  // without one, or if it fails to load, the card has no picture at all.
+  function projectCard(kind, title, desc, tags, href, linkText, image) {
     var card = el("article", "card project");
-    var coverEl = el("div", "project-cover", cover);
     if (image) {
+      var coverEl = el("div", "project-cover");
       var img = document.createElement("img");
       img.alt = "";
       img.loading = "lazy";
-      img.addEventListener("error", function () { coverEl.replaceChildren(cover); });
+      img.addEventListener("error", function () { coverEl.remove(); });
       img.src = image;
-      coverEl.replaceChildren(img);
+      coverEl.append(img);
+      card.append(coverEl);
     }
-    card.append(coverEl);
     var body = el("div", "project-body");
     if (kind) body.append(el("span", "label", kind));
     body.append(el("h3", "title", title), el("p", "", desc));
@@ -172,13 +166,11 @@
     track.replaceChildren();
     (repos || []).forEach(function (repo) {
       track.append(projectCard(
-        repo.name, repo.language, repo.name, repo.description || t.noDesc,
+        repo.language, repo.name, repo.description || t.noDesc,
         (repo.topics || []).slice(0, 4), repo.url, t.viewGh, repo.image
       ));
     });
-    if (repos !== null) {
-      track.append(projectCard("GitHub", "", t.allTitle, t.allDesc, [], "https://github.com/" + GITHUB_USER, t.allLink));
-    }
+    track.append(projectCard("", t.allTitle, t.allDesc, [], "https://github.com/" + GITHUB_USER, t.allLink));
     var n = (repos || []).length;
     count.textContent = n ? n + " " + (n === 1 ? t.project : t.projects) : "";
   }

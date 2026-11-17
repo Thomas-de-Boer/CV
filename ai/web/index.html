@@ -6,7 +6,7 @@
   <title>Watch a neural network read your handwriting</title>
   <meta name="description" content="Draw a number and watch a neural network, written from scratch in Rust and running in your browser as WebAssembly, work out what it is.">
   <meta name="color-scheme" content="dark light">
-  <meta name="theme-color" content="#12111c">
+  <meta name="theme-color" content="#151515">
   <link rel="canonical" href="https://tdeboer.com/ai/web/">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
@@ -31,11 +31,10 @@
         theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
       }
       document.documentElement.className = "t-" + theme;
-      document.querySelector('meta[name="theme-color"]').content = theme === "light" ? "#f5f3ee" : "#12111c";
+      document.querySelector('meta[name="theme-color"]').content = theme === "light" ? "#faf9f6" : "#151515";
     })();
   </script>
-  <link rel="preload" href="../../assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
   <!-- Tokens, fonts and shared components come from the CV page. -->
   <link rel="stylesheet" href="../../assets/site.css">
   <link rel="stylesheet" href="style.css">
@@ -47,7 +46,7 @@
       <a class="brand" href="../../">Thomas de Boer</a>
       <div class="nav-right">
         <div class="nav-links">
-          <a href="../../#neural-network" data-i18n="back">← Back to CV</a>
+          <a href="../../#neural-network" data-i18n="back">Back to CV</a>
         </div>
         <div class="nav-controls">
         <div class="lang-switch" role="group" aria-label="Language" data-i18n-aria-label="langLabel">
@@ -66,7 +65,6 @@
 
   <main id="main" class="wrap page" tabindex="-1">
     <header class="page-head">
-      <span class="eyebrow" data-i18n="eyebrow">Neural network · full demo</span>
       <h1 data-i18n="title">Watch a neural network read your handwriting</h1>
       <p class="lead" data-i18n="lead">
         Draw a number. A small neural network, written from scratch in Rust and running
@@ -117,7 +115,7 @@
 
     <section class="stage" aria-label="Draw a number">
       <div class="panel draw">
-        <h2 class="label" data-i18n="step1">1 · Draw a number (0–9)</h2>
+        <h2 class="label" data-i18n="step1">1. Draw a number (0–9)</h2>
         <canvas id="pad" width="280" height="280" role="img" aria-label="Drawing area" data-i18n-aria-label="padLabel"></canvas>
         <div class="row">
           <button id="clear" type="button" data-i18n="clear">Clear</button>
@@ -126,13 +124,13 @@
       </div>
 
       <div class="panel sees">
-        <h2 class="label" data-i18n="step2">2 · What the network sees</h2>
+        <h2 class="label" data-i18n="step2">2. What the network sees</h2>
         <canvas id="seen" width="28" height="28" role="img" aria-label="The 28 by 28 pixel image given to the network"></canvas>
         <p class="hint" data-i18n="seenHint">Your drawing, cropped, shrunk to 28×28 pixels and centred.</p>
       </div>
 
       <div class="panel answer" aria-live="polite">
-        <h2 class="label" data-i18n="step3">3 · Its answer</h2>
+        <h2 class="label" data-i18n="step3">3. Its answer</h2>
         <div id="answer-digit" class="digit">?</div>
         <div id="answer-detail" class="detail" data-i18n="drawToStart">Draw something to start.</div>
       </div>
@@ -172,7 +170,6 @@
     </section>
 
     <section id="how" class="about">
-      <span class="eyebrow" data-i18n="howEyebrow">How it works</span>
       <h2 data-i18n="howTitle">What am I looking at?</h2>
       <p data-i18n="how1">
         On the left is your drawing as 784 pixels. Each circle after that is a neuron: it adds up

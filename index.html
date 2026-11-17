@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Thomas de Boer — CV</title>
+  <title>Thomas de Boer</title>
   <meta name="description" content="Thomas de Boer, Software Development student at Nova College. Projects, a neural network built from scratch in Rust, work and school.">
   <meta name="color-scheme" content="dark light">
-  <meta name="theme-color" content="#12111c">
+  <meta name="theme-color" content="#151515">
   <link rel="canonical" href="https://tdeboer.com/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <!-- Link preview (shown when the site is shared). These need the full address. -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tdeboer.com/">
-  <meta property="og:title" content="Thomas de Boer — CV">
+  <meta property="og:title" content="Thomas de Boer">
   <meta property="og:description" content="Software Development student. Projects, and a neural network built from scratch that runs in your browser.">
   <meta property="og:image" content="https://tdeboer.com/assets/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -32,7 +32,7 @@
       }
       document.documentElement.className = "t-" + theme;
       document.documentElement.lang = lang;
-      document.querySelector('meta[name="theme-color"]').content = theme === "light" ? "#f5f3ee" : "#12111c";
+      document.querySelector('meta[name="theme-color"]').content = theme === "light" ? "#faf9f6" : "#151515";
     })();
   </script>
   <script type="application/ld+json">
@@ -40,7 +40,7 @@
     "@context": "https://schema.org",
     "@type": "ProfilePage",
     "url": "https://tdeboer.com/",
-    "name": "Thomas de Boer — CV",
+    "name": "Thomas de Boer",
     "inLanguage": ["en", "nl"],
     "mainEntity": {
       "@type": "Person",
@@ -57,8 +57,7 @@
     }
   }
   </script>
-  <link rel="preload" href="assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
@@ -73,8 +72,8 @@
         <a href="#projects" data-i18n="navProjects">Projects</a>
         <a href="#neural-network" data-i18n="navNN">Neural network</a>
         <a href="#about" data-i18n="navWork">Work &amp; school</a>
-        <a href="#more" data-i18n="navMore">More</a>
-        <a href="#contact" class="is-primary">Contact</a>
+        <a href="#more" data-i18n="navMore">Other</a>
+        <a href="#contact">Contact</a>
       </div>
       <div class="nav-controls">
         <div class="lang-switch" role="group" aria-label="Language" data-i18n-aria-label="langLabel">
@@ -93,46 +92,32 @@
 
 <main id="main" tabindex="-1">
 
-<!-- HERO -->
+<!-- INTRO -->
 <section id="top" class="hero wrap">
+  <!-- Photo: put a square photo (at least 600×600) at assets/photo.jpg, then remove these comment markers.
+  <img class="hero-photo" src="assets/photo.jpg" width="180" height="180" alt="Thomas de Boer">
+  -->
   <div class="hero-main">
-    <div class="hero-meta">
-      <span class="badge"><span class="badge-dot" aria-hidden="true"></span><span data-i18n="badge">Available for final internship · from August 2027</span></span>
-      <span class="label">Software developer · MBO 4</span>
-    </div>
     <h1>Thomas de Boer</h1>
-    <p class="lead" data-i18n="intro">Second-year Software Development student at Nova College. I like the parts you don’t see: backends, databases and how systems fit together.</p>
+    <p class="lead" data-i18n="intro">I’m a second-year Software Development student (MBO 4) at Nova College. I’m most interested in backend work: databases and how systems fit together. I’m looking for a final internship from August 2027.</p>
+    <p class="langs" data-i18n="langs">I’ve worked in Java, Python, C#, Rust and JavaScript, and I’m still trying a bit of everything.</p>
     <div class="actions">
-      <a class="btn btn-primary" href="#projects" data-i18n="cta1">See my projects</a>
-      <a class="btn btn-outline" href="#neural-network" data-i18n="cta2">Try the neural network</a>
+      <a class="btn btn-primary" href="#projects" data-i18n="cta1">Projects</a>
+      <a class="btn btn-outline" href="#neural-network" data-i18n="cta2">Neural network demo</a>
     </div>
-  </div>
-  <div class="card hero-card">
-    <span class="label" data-i18n="langsTitle">Languages I work in</span>
-    <div class="tags tags-wide">
-      <span class="tag">Java</span>
-      <span class="tag">Python</span>
-      <span class="tag">C#</span>
-      <span class="tag">Rust</span>
-      <span class="tag">JavaScript</span>
-    </div>
-    <span class="small" data-i18n="focus">Trying a bit of everything right now; backend is where I want to go.</span>
   </div>
 </section>
 
 <!-- PROJECTS SLIDER -->
 <section id="projects" class="section wrap" aria-labelledby="projects-title">
   <div class="section-head section-head-row">
-    <div class="head-text">
-      <span class="eyebrow">01 — <span data-i18n="navProjects">Projects</span></span>
-      <h2 id="projects-title" data-i18n="projTitle">Things I’ve built</h2>
-    </div>
+    <h2 id="projects-title" data-i18n="navProjects">Projects</h2>
     <div class="slider-controls">
       <span class="count" id="project-count"></span>
       <button type="button" id="projects-prev" class="icon-btn" aria-label="Previous projects" data-i18n-aria-label="prev">
         <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
       </button>
-      <button type="button" id="projects-next" class="icon-btn icon-btn-primary" aria-label="Next projects" data-i18n-aria-label="next">
+      <button type="button" id="projects-next" class="icon-btn" aria-label="Next projects" data-i18n-aria-label="next">
         <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
       </button>
     </div>
@@ -142,32 +127,26 @@
   </div>
 </section>
 
-<!-- NEURAL NETWORK SHOWCASE (deep band, same in both themes) -->
+<!-- NEURAL NETWORK (dark in both themes) -->
 <section id="neural-network" class="nn" aria-labelledby="nn-title">
   <div class="nn-inner wrap">
     <div class="nn-text">
-      <span class="eyebrow">02 — <span data-i18n="navNN">Neural network</span></span>
-      <h2 id="nn-title" data-i18n="nnTitle">Draw a number. Watch it think.</h2>
-      <p class="lead" data-i18n="nnBody">A neural network built from scratch, running in your browser. Draw a number on the pad and see each layer light up before it makes its guess.</p>
-      <div class="tags">
-        <span class="tag">Rust</span>
-        <span class="tag">WebAssembly</span>
-        <span class="tag" data-i18n="noLibs">No ML libraries</span>
-      </div>
+      <h2 id="nn-title" data-i18n="nnTitle">A neural network I wrote from scratch</h2>
+      <p class="lead" data-i18n="nnBody">It’s written in Rust without any machine learning libraries and runs in your browser as WebAssembly. Draw a digit on the pad and you can see what each layer does before it guesses.</p>
       <div class="actions">
-        <a class="btn btn-primary btn-wide" href="ai/web/" data-i18n="openDemo">Open full demo</a>
+        <a class="btn btn-primary" href="ai/web/" data-i18n="openDemo">Open the full demo</a>
       </div>
     </div>
 
     <div class="demo" id="demo">
       <div class="demo-head">
-        <span class="label" data-i18n="demoLabel">Live demo</span>
+        <span class="demo-title" data-i18n="demoLabel">Try it</span>
         <button type="button" id="demo-clear" class="demo-clear" data-i18n="clear">Clear</button>
       </div>
       <div class="demo-body">
         <div class="demo-pad">
           <canvas id="demo-canvas" width="280" height="280" role="img" aria-label="Drawing pad" data-i18n-aria-label="pad"></canvas>
-          <span class="demo-caption" data-i18n="input">Draw a number here · 0–9</span>
+          <span class="demo-caption" data-i18n="input">Draw a digit here (0–9)</span>
         </div>
         <div class="demo-layers" id="demo-layers" aria-hidden="true"></div>
         <div class="demo-out" aria-live="polite">
@@ -186,73 +165,91 @@
 <!-- WORK & SCHOOL -->
 <section id="about" class="section section-about wrap" aria-labelledby="about-title">
   <div class="section-head narrow">
-    <span class="eyebrow">03 — <span data-i18n="navWork">Work &amp; school</span></span>
-    <h2 id="about-title" data-i18n="wsTitle">Where I’m at</h2>
-    <p class="lead" data-i18n="wsBody">I’m heading towards backend development, databases and systems architecture, with a long-term interest in AI and machine learning.</p>
+    <h2 id="about-title" data-i18n="navWork">Work &amp; school</h2>
+    <p class="lead" data-i18n="wsBody">I want to grow into backend development, databases and systems architecture, and later on AI and machine learning.</p>
   </div>
   <div class="timeline">
     <div class="timeline-col">
-      <h3 class="label" data-i18n="school">School</h3>
-      <div class="card entry">
-        <span class="label when">2025 — <span data-i18n="now">Now</span></span>
-        <span class="title">MBO 4 Software Development</span>
-        <span class="small" data-i18n="nova">Nova College · second year</span>
-      </div>
-      <div class="card entry">
-        <span class="label when">2021 — 2025</span>
-        <span class="title" data-i18n="prevSchool">Dali College</span>
-        <span class="small" data-i18n="level">Mavo</span>
-      </div>
+      <h3 class="col-title" data-i18n="school">School</h3>
+      <ul class="entries">
+        <li class="entry">
+          <span class="when">2025–<span data-i18n="now">now</span></span>
+          <div class="what">
+            <span class="title">MBO 4 Software Development</span>
+            <span class="small" data-i18n="nova">Nova College, second year</span>
+          </div>
+        </li>
+        <li class="entry">
+          <span class="when">2021–2025</span>
+          <div class="what">
+            <span class="title" data-i18n="prevSchool">Dali College</span>
+            <span class="small" data-i18n="level">Mavo</span>
+          </div>
+        </li>
+      </ul>
     </div>
     <div class="timeline-col">
-      <h3 class="label" data-i18n="work">Work</h3>
-      <div class="card entry entry-next">
-        <span class="label when" data-i18n="nextLabel">Next</span>
-        <span class="title" data-i18n="internTitle">Internship — your company?</span>
-        <span class="small" data-i18n="internBody">Looking for a final internship (eindstage) in software development, from around August 2027.</span>
-      </div>
-      <div class="card entry">
-        <span class="label when">2026 — <span data-i18n="now">Now</span></span>
-        <span class="title">Motivaction International B.V.</span>
-        <span class="small" data-i18n="motiRole">Internship (blokstage) · working on a planning tool</span>
-      </div>
-      <div class="card entry">
-        <span class="label when">2025 — 2026</span>
-        <span class="title">Vomar Voordeelmarkt</span>
-        <span class="small" data-i18n="vomarRole">Part-time · Shelf stocker / Cashier</span>
-      </div>
+      <h3 class="col-title" data-i18n="work">Work</h3>
+      <ul class="entries">
+        <li class="entry entry-next">
+          <span class="when">2027</span>
+          <div class="what">
+            <span class="title" data-i18n="internTitle">Final internship</span>
+            <span class="small" data-i18n="internBody">From around August 2027. I’m still looking for a company.</span>
+          </div>
+        </li>
+        <li class="entry">
+          <span class="when">2026–<span data-i18n="now">now</span></span>
+          <div class="what">
+            <span class="title">Motivaction International B.V.</span>
+            <span class="small" data-i18n="motiRole">Internship (blokstage), working on a planning tool</span>
+          </div>
+        </li>
+        <li class="entry">
+          <span class="when">2025–2026</span>
+          <div class="what">
+            <span class="title">Vomar Voordeelmarkt</span>
+            <span class="small" data-i18n="vomarRole">Part-time shelf stocker and cashier</span>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- BEYOND SCHOOL -->
+<!-- OTHER -->
 <section id="more" class="section section-more wrap" aria-labelledby="more-title">
-  <div class="section-head">
-    <span class="eyebrow">04 — <span data-i18n="moreEyebrow">Beyond school</span></span>
-    <h2 id="more-title" data-i18n="moreTitle">Hobbies, certificates &amp; more</h2>
-  </div>
-  <div class="more-grid">
-    <div class="card entry">
-      <span class="tag" data-i18n="cert">Certificate</span>
-      <span class="title" data-i18n="certName">First Certificate in English · C1</span>
-      <span class="small" data-i18n="issuer">Cambridge English · 2025</span>
-    </div>
-    <div class="card entry">
-      <span class="tag tag-accent">Hobby</span>
-      <span class="title" data-i18n="badminton">Competitive badminton</span>
-      <span class="small" data-i18n="club">Playing competition since 2024</span>
-    </div>
-    <div class="card entry">
-      <span class="tag tag-accent">Hobby</span>
-      <span class="title" data-i18n="chess">Chess</span>
-      <span class="small" data-i18n="chessLine">I love to play chess</span>
-    </div>
-    <div class="card entry">
-      <span class="tag tag-accent" data-i18n="other">Other</span>
-      <span class="title" data-i18n="aiTitle">Building with AI</span>
-      <span class="small" data-i18n="aiLine">I like making things together with AI tools. This site is one of them.</span>
-    </div>
-  </div>
+  <h2 id="more-title" data-i18n="navMore">Other</h2>
+  <ul class="entries entries-wide">
+    <li class="entry">
+      <span class="when" data-i18n="cert">Certificate</span>
+      <div class="what">
+        <span class="title" data-i18n="certName">Cambridge First Certificate in English (C1)</span>
+        <span class="small">2025</span>
+      </div>
+    </li>
+    <li class="entry">
+      <span class="when">Hobby</span>
+      <div class="what">
+        <span class="title" data-i18n="badminton">Badminton</span>
+        <span class="small" data-i18n="club">Playing in competition since 2024</span>
+      </div>
+    </li>
+    <li class="entry">
+      <span class="when">Hobby</span>
+      <div class="what">
+        <span class="title" data-i18n="chess">Chess</span>
+        <span class="small" data-i18n="chessLine">I love to play chess</span>
+      </div>
+    </li>
+    <li class="entry">
+      <span class="when" data-i18n="other">Other</span>
+      <div class="what">
+        <span class="title" data-i18n="aiTitle">Building with AI</span>
+        <span class="small" data-i18n="aiLine">I like making things together with AI tools. This site is one of them.</span>
+      </div>
+    </li>
+  </ul>
 </section>
 
 </main>
@@ -261,8 +258,8 @@
 <footer id="contact" class="site-footer">
   <div class="footer-inner wrap">
     <div class="head-text">
-      <span class="label">05 — Contact</span>
-      <h2 class="h-small" data-i18n="contactTitle">Looking for an intern? Let’s talk.</h2>
+      <h2>Contact</h2>
+      <p class="lead" data-i18n="contactBody">Email is the easiest way to reach me.</p>
     </div>
     <div class="actions">
       <a class="btn btn-primary" href="mailto:contact@tdeboer.com">contact@tdeboer.com</a>

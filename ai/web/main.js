@@ -15,7 +15,7 @@ const DEFAULT_MODEL = "trained";
 const PAD = 280;
 const BRUSH = 24; // canvas pixels; a digit drawn ~200 px tall becomes ~2.5 px thick at 28×28
 const LIVE_INTERVAL_MS = 100;
-const INK = "#edecf4";
+const INK = "#ececea";
 
 const pad = document.getElementById("pad");
 const padCtx = pad.getContext("2d", { willReadFrequently: true });
@@ -202,7 +202,7 @@ themeToggle.addEventListener("click", () => {
     // Private mode: the choice just isn't remembered.
   }
   themeToggle.setAttribute("aria-checked", String(isDark()));
-  document.querySelector('meta[name="theme-color"]').content = isDark() ? "#12111c" : "#f5f3ee";
+  document.querySelector('meta[name="theme-color"]').content = isDark() ? "#151515" : "#faf9f6";
 });
 
 // ------------------------------------------------------------------- start

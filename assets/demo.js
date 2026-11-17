@@ -6,12 +6,12 @@ import init, { Model, preprocess } from "../ai/web/pkg/nn_wasm.js";
 const WEIGHTS = new URL("../ai/web/weights-trained.bin", import.meta.url);
 const PAD = 280; // canvas pixels (shown at 200 CSS px)
 const BRUSH = 24;
-const INK = "#edecf4";
+const INK = "#ececea";
 const LIVE_INTERVAL_MS = 100;
 // The "3" from the design, shown until the visitor starts drawing.
 const SAMPLE = "M28 30c10-16 54-20 62 2 6 18-14 30-34 36 24 2 40 14 36 34-6 26-52 28-66 10";
-const DOT_OFF = [46, 44, 64];
-const DOT_ON = [35, 203, 180];
+const DOT_OFF = [44, 44, 44];
+const DOT_ON = [138, 168, 255];
 
 const pad = document.getElementById("demo-canvas");
 const ctx = pad.getContext("2d", { willReadFrequently: true });

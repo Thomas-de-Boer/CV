@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Page not found — Thomas de Boer</title>
+  <title>Page not found · Thomas de Boer</title>
   <meta name="robots" content="noindex">
   <meta name="color-scheme" content="dark light">
-  <meta name="theme-color" content="#12111c">
+  <meta name="theme-color" content="#151515">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <script>
@@ -18,7 +18,7 @@
         theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
       }
       document.documentElement.className = "t-" + theme;
-      document.querySelector('meta[name="theme-color"]').content = theme === "light" ? "#f5f3ee" : "#12111c";
+      document.querySelector('meta[name="theme-color"]').content = theme === "light" ? "#faf9f6" : "#151515";
     })();
   </script>
   <!-- Absolute paths: this page is served for any missing address, at any depth. -->
@@ -35,12 +35,11 @@
   </header>
 
   <main class="wrap notfound">
-    <span class="eyebrow">404</span>
-    <h1>Page not found</h1>
+    <h1>Page not found (404)</h1>
     <p class="lead">This page doesn’t exist, or it has moved.</p>
     <p class="lead" lang="nl">Deze pagina bestaat niet, of is verplaatst.</p>
     <div class="actions">
-      <a class="btn btn-primary" href="/">Back to the CV · Terug naar het cv</a>
+      <a class="btn btn-primary" href="/">Back to the CV / Terug naar het cv</a>
       <a class="btn btn-outline" href="/ai/web/">Neural network demo</a>
     </div>
   </main>
