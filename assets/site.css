@@ -409,7 +409,6 @@ h2 {
 }
 .entry .when { font-size: 15px; line-height: 26px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .entry .what { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.entry-next .when, .entry-next .title { color: var(--primary); }
 .entries-wide { max-width: 760px; border-top: 1px solid var(--line-strong); }
 .entries-wide .entry { grid-template-columns: 120px 1fr; }
 
