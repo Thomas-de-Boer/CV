@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" class="t-dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found — Thomas de Boer</title>
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#12111c">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <script>
+    // Same theme as the rest of the site, set before first paint.
+    (function () {
+      var theme = null;
+      try { theme = localStorage.getItem("cv-theme"); } catch (e) {}
+      if (theme !== "dark" && theme !== "light") {
+        theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+      }
+      document.documentElement.className = "t-" + theme;
+      document.querySelector('meta[name="theme-color"]').content = theme === "light" ? "#f5f3ee" : "#12111c";
+    })();
+  </script>
+  <!-- Absolute paths: this page is served for any missing address, at any depth. -->
+  <link rel="stylesheet" href="/assets/site.css">
+  <style>
+    .notfound { padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 24px; max-width: 720px; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main">
+      <a class="brand" href="/">Thomas de Boer</a>
+    </nav>
+  </header>
+
+  <main class="wrap notfound">
+    <span class="eyebrow">404</span>
+    <h1>Page not found</h1>
+    <p class="lead">This page doesn’t exist, or it has moved.</p>
+    <p class="lead" lang="nl">Deze pagina bestaat niet, of is verplaatst.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/">Back to the CV · Terug naar het cv</a>
+      <a class="btn btn-outline" href="/ai/web/">Neural network demo</a>
+    </div>
+  </main>
+</body>
+</html>

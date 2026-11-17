@@ -202,6 +202,7 @@ themeToggle.addEventListener("click", () => {
     // Private mode: the choice just isn't remembered.
   }
   themeToggle.setAttribute("aria-checked", String(isDark()));
+  document.querySelector('meta[name="theme-color"]').content = isDark() ? "#12111c" : "#f5f3ee";
 });
 
 // ------------------------------------------------------------------- start

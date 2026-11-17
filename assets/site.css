@@ -56,7 +56,29 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  accent-color: var(--primary);
+  -webkit-tap-highlight-color: transparent; /* replaced by the :active states below */
+}
+
+::selection { background: var(--primary); color: var(--on-primary); }
+
+.skip-link {
+  position: absolute;
+  z-index: 10;
+  top: 8px;
+  left: 8px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-weight: 500;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: none; color: var(--on-primary); }
+main:focus { outline: none; }
 
 body {
   margin: 0;
@@ -94,7 +116,7 @@ h2.h-small { font-size: 28px; line-height: 34px; letter-spacing: -0.01em; }
 .eyebrow { color: var(--accent-text); }
 .lead { font-size: 18px; line-height: 30px; color: var(--muted); }
 .small { font-size: 14px; line-height: 22px; color: var(--muted); }
-.title { font: 500 20px/28px var(--font-display); }
+.title { font: 500 20px/28px var(--font-display); overflow-wrap: anywhere; }
 
 .card {
   background: var(--surface);
@@ -460,6 +482,11 @@ h2.h-small { font-size: 28px; line-height: 34px; letter-spacing: -0.01em; }
   .demo { padding: 16px; }
   .demo-pad { margin: 0 auto; }
 }
+
+/* Tap feedback, in place of the default iOS highlight. */
+.btn:active, .icon-btn:active, .demo-clear:active, .lang-switch button:active,
+.theme-toggle:active, .project-link:active { opacity: 0.75; }
+.nav-links a:active, .brand:active { color: var(--ink); opacity: 0.75; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

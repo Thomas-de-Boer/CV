@@ -6,6 +6,8 @@
   <title>Thomas de Boer — CV</title>
   <meta name="description" content="Thomas de Boer, Software Development student at Nova College. Projects, a neural network built from scratch in Rust, work and school.">
   <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#12111c">
+  <link rel="canonical" href="https://tdeboer.com/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <!-- Link preview (shown when the site is shared). These need the full address. -->
@@ -30,13 +32,38 @@
       }
       document.documentElement.className = "t-" + theme;
       document.documentElement.lang = lang;
+      document.querySelector('meta[name="theme-color"]').content = theme === "light" ? "#f5f3ee" : "#12111c";
     })();
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "url": "https://tdeboer.com/",
+    "name": "Thomas de Boer — CV",
+    "inLanguage": ["en", "nl"],
+    "mainEntity": {
+      "@type": "Person",
+      "@id": "https://tdeboer.com/#thomas-de-boer",
+      "name": "Thomas de Boer",
+      "jobTitle": "Software Development student",
+      "description": "Second-year Software Development (MBO 4) student at Nova College, looking for a final internship from August 2027. Interested in backends, databases and systems architecture.",
+      "url": "https://tdeboer.com/",
+      "email": "mailto:contact@tdeboer.com",
+      "sameAs": ["https://github.com/Thomas-de-Boer"],
+      "affiliation": { "@type": "EducationalOrganization", "name": "Nova College" },
+      "knowsLanguage": ["nl", "en"],
+      "knowsAbout": ["Java", "Python", "C#", "Rust", "JavaScript", "WebAssembly", "Backend development", "Databases", "Neural networks"]
+    }
+  }
   </script>
   <link rel="preload" href="assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+
+<a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
 
 <header class="site-header">
   <nav class="nav wrap" aria-label="Main">
@@ -64,7 +91,7 @@
   </nav>
 </header>
 
-<main>
+<main id="main" tabindex="-1">
 
 <!-- HERO -->
 <section id="top" class="hero wrap">
@@ -110,7 +137,9 @@
       </button>
     </div>
   </div>
-  <div class="track" id="projects-track" tabindex="0" aria-labelledby="projects-title"></div>
+  <div class="track" id="projects-track" tabindex="0" role="region" aria-labelledby="projects-title">
+    <!-- projects:start --><!-- projects:end -->
+  </div>
 </section>
 
 <!-- NEURAL NETWORK SHOWCASE (deep band, same in both themes) -->
@@ -137,7 +166,7 @@
       </div>
       <div class="demo-body">
         <div class="demo-pad">
-          <canvas id="demo-canvas" width="280" height="280" aria-label="Drawing pad" data-i18n-aria-label="pad"></canvas>
+          <canvas id="demo-canvas" width="280" height="280" role="img" aria-label="Drawing pad" data-i18n-aria-label="pad"></canvas>
           <span class="demo-caption" data-i18n="input">Draw a number here · 0–9</span>
         </div>
         <div class="demo-layers" id="demo-layers" aria-hidden="true"></div>

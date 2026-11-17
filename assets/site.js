@@ -8,6 +8,7 @@
 
   var STRINGS = {
     en: {
+      skip: "Skip to content",
       navProjects: "Projects", navNN: "Neural network", navWork: "Work & school", navMore: "More",
       langLabel: "Language", darkLabel: "Dark mode",
       badge: "Available for final internship · from August 2027",
@@ -37,6 +38,7 @@
       contactTitle: "Looking for an intern? Let’s talk."
     },
     nl: {
+      skip: "Naar de inhoud",
       navProjects: "Projecten", navNN: "Neuraal netwerk", navWork: "Werk & school", navMore: "Meer",
       langLabel: "Taal", darkLabel: "Donkere modus",
       badge: "Beschikbaar voor eindstage · vanaf augustus 2027",
@@ -108,7 +110,11 @@
 
   function isDark() { return root.classList.contains("t-dark"); }
 
-  function syncTheme() { themeToggle.setAttribute("aria-checked", String(isDark())); }
+  function syncTheme() {
+    themeToggle.setAttribute("aria-checked", String(isDark()));
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = isDark() ? "#12111c" : "#f5f3ee";
+  }
 
   themeToggle.addEventListener("click", function () {
     var next = isDark() ? "light" : "dark";
@@ -161,6 +167,8 @@
 
   function renderProjects() {
     var t = STRINGS[lang];
+    // Until the list has loaded, keep the cards written into the page at build time.
+    if (repos === null) return;
     track.replaceChildren();
     (repos || []).forEach(function (repo) {
       track.append(projectCard(

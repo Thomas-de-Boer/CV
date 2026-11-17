@@ -1,0 +1,13 @@
+# Thomas de Boer
+
+> Second-year Software Development (MBO 4) student at Nova College in the Netherlands, looking for a final internship (eindstage) in software development from August 2027. Interested in backend development, databases and systems architecture. Works in Java, Python, C#, Rust and JavaScript.
+
+## Pages
+
+- [CV](https://tdeboer.com/): projects, education, work experience, certificates and contact details, in English and Dutch.
+- [Neural network demo](https://tdeboer.com/ai/web/): a handwritten-digit neural network written from scratch in Rust, running in the browser as WebAssembly, with no ML libraries.
+
+## Elsewhere
+
+- [GitHub](https://github.com/Thomas-de-Boer): source code for all public projects, including this site.
+- Contact: contact@tdeboer.com

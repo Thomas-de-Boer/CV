@@ -5,6 +5,7 @@ const STRINGS = {
   en: {
     pageTitle: "Watch a neural network read your handwriting",
     back: "← Back to CV",
+    skip: "Skip to content",
     langLabel: "Language",
     darkLabel: "Dark mode",
     eyebrow: "Neural network · full demo",
@@ -63,6 +64,7 @@ const STRINGS = {
   nl: {
     pageTitle: "Kijk hoe een neuraal netwerk je handschrift leest",
     back: "← Terug naar cv",
+    skip: "Naar de inhoud",
     langLabel: "Taal",
     darkLabel: "Donkere modus",
     eyebrow: "Neuraal netwerk · volledige demo",

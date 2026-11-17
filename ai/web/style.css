@@ -32,6 +32,7 @@ button:not(.theme-toggle) {
   cursor: pointer;
 }
 button:not(.theme-toggle):hover { border-color: var(--ink); }
+button:active, .switch label:active span { opacity: 0.75; }
 button.danger { color: var(--accent-text); }
 
 /* ---------------------------------------------------------- weights switch */

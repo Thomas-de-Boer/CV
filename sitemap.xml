@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The site has two pages. Add new pages here too. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://tdeboer.com/</loc>
+  </url>
+  <url>
+    <loc>https://tdeboer.com/ai/web/</loc>
+  </url>
+</urlset>

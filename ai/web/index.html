@@ -6,6 +6,8 @@
   <title>Watch a neural network read your handwriting</title>
   <meta name="description" content="Draw a number and watch a neural network, written from scratch in Rust and running in your browser as WebAssembly, work out what it is.">
   <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#12111c">
+  <link rel="canonical" href="https://tdeboer.com/ai/web/">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
   <meta property="og:type" content="website">
@@ -13,6 +15,8 @@
   <meta property="og:title" content="Watch a neural network read your handwriting">
   <meta property="og:description" content="Draw a number and watch a neural network, written from scratch in Rust, work out what it is.">
   <meta property="og:image" content="https://tdeboer.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <script>
     // Same theme and language as the CV page, set before first paint.
@@ -27,13 +31,17 @@
         theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
       }
       document.documentElement.className = "t-" + theme;
+      document.querySelector('meta[name="theme-color"]').content = theme === "light" ? "#f5f3ee" : "#12111c";
     })();
   </script>
+  <link rel="preload" href="../../assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <!-- Tokens, fonts and shared components come from the CV page. -->
   <link rel="stylesheet" href="../../assets/site.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
   <header class="site-header">
     <nav class="nav wrap" aria-label="Main">
       <a class="brand" href="../../">Thomas de Boer</a>
@@ -56,7 +64,7 @@
     </nav>
   </header>
 
-  <main class="wrap page">
+  <main id="main" class="wrap page" tabindex="-1">
     <header class="page-head">
       <span class="eyebrow" data-i18n="eyebrow">Neural network · full demo</span>
       <h1 data-i18n="title">Watch a neural network read your handwriting</h1>
@@ -110,7 +118,7 @@
     <section class="stage" aria-label="Draw a number">
       <div class="panel draw">
         <h2 class="label" data-i18n="step1">1 · Draw a number (0–9)</h2>
-        <canvas id="pad" width="280" height="280" aria-label="Drawing area" data-i18n-aria-label="padLabel"></canvas>
+        <canvas id="pad" width="280" height="280" role="img" aria-label="Drawing area" data-i18n-aria-label="padLabel"></canvas>
         <div class="row">
           <button id="clear" type="button" data-i18n="clear">Clear</button>
           <span class="hint" data-i18n="drawHint">Mouse, finger or pen. Draw big.</span>
@@ -119,7 +127,7 @@
 
       <div class="panel sees">
         <h2 class="label" data-i18n="step2">2 · What the network sees</h2>
-        <canvas id="seen" width="28" height="28" aria-label="The 28 by 28 pixel image given to the network"></canvas>
+        <canvas id="seen" width="28" height="28" role="img" aria-label="The 28 by 28 pixel image given to the network"></canvas>
         <p class="hint" data-i18n="seenHint">Your drawing, cropped, shrunk to 28×28 pixels and centred.</p>
       </div>
 
