@@ -242,11 +242,11 @@ export class NetworkView {
       return;
     }
     const { layer, index } = this.hover;
-    const t = layer - 1;
+    const tr = layer - 1; // transition into this layer (0 = from the pixels); not `t`, that's the translator
     const isOutput = layer === this.model.sizes.length - 1;
     const active = this.layers !== null;
-    const value = active ? this.layers[t][index] : null;
-    const title = this.model.titles?.[t];
+    const value = active ? this.layers[tr][index] : null;
+    const title = this.model.titles?.[tr];
 
     let html = `<div class="name">${escapeHtml(this.neuronName(layer, index))}</div>`;
     html += `<div class="sub">${title ? escapeHtml(title) + " · " : ""}`;
@@ -255,24 +255,24 @@ export class NetworkView {
     else html += t("tipActivation", { value: formatNumber(value, 2) });
     html += "</div>";
 
-    if (t === 0) {
+    if (tr === 0) {
       html += `<canvas width="28" height="28"></canvas>`;
       html += `<div class="sub"><span class="plus">■</span> ${t("tipWantsInk")} · <span class="minus">■</span> ${t("tipWantsEmpty")}</div>`;
     } else {
-      const top = this.contributions(t, index, 5);
+      const top = this.contributions(tr, index, 5);
       if (top.length) {
         html += `<div class="sub" style="margin-top:6px">${t(active ? "tipStrongest" : "tipListens")}</div><ul>`;
         for (const c of top) {
           const sign = c.value >= 0 ? "plus" : "minus";
           const number = `${c.value >= 0 ? "+" : "−"}${formatNumber(Math.abs(c.value), 2)}`;
-          html += `<li><span>${escapeHtml(this.neuronName(t, c.source))}</span><span class="${sign}">${number}</span></li>`;
+          html += `<li><span>${escapeHtml(this.neuronName(tr, c.source))}</span><span class="${sign}">${number}</span></li>`;
         }
         html += "</ul>";
       }
     }
     tip.innerHTML = html;
     tip.hidden = false;
-    if (t === 0) this.paintWeightMap(tip.querySelector("canvas"), index);
+    if (tr === 0) this.paintWeightMap(tip.querySelector("canvas"), index);
 
     // Place it next to the neuron, inside the canvas.
     const p = this.positions[layer][index];
