@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 # Writes assets/projects.json: the repositories pinned on the GitHub profile,
 # in the order they are pinned. A repository's picture is the one uploaded on
-# GitHub under Settings -> Social preview (null if there is none). Needs the GitHub CLI (`gh`), logged in or with
+# GitHub under Settings -> Social preview (null if there is none). Its website
+# is the "Website" field in the repository's About box (null if it is empty or
+# not an http(s) URL). Needs the GitHub CLI (`gh`), logged in or with
 # GH_TOKEN set. Run from the repository root: bash tools/update-projects.sh
 set -euo pipefail
 
@@ -17,6 +19,7 @@ gh api graphql -f login="$USER_LOGIN" -f query='
             name
             description
             url
+            homepageUrl
             isPrivate
             primaryLanguage { name }
             usesCustomOpenGraphImage
@@ -32,6 +35,7 @@ gh api graphql -f login="$USER_LOGIN" -f query='
     language: (.primaryLanguage.name // null),
     topics: [.repositoryTopics.nodes[].topic.name],
     image: (if .usesCustomOpenGraphImage then .openGraphImageUrl else null end),
+    website: ((.homepageUrl // "") | gsub("^\\s+|\\s+$"; "") | if test("^https?://"; "i") then . else null end),
     url
   }]' > "$OUT.tmp"
 

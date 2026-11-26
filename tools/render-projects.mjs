@@ -15,16 +15,20 @@ const MAX_PROJECTS = 6; // same as assets/site.js
 const escape = (text) =>
   String(text).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
-function card({ kind, title, desc, tags = [], href, linkText, image }) {
+function card({ kind, title, desc, tags = [], href, linkText, image, website }) {
   const coverHtml = image ? `<div class="project-cover"><img alt="" loading="lazy" src="${escape(image)}"></div>` : "";
   const kindHtml = kind ? `<span class="label">${escape(kind)}</span>` : "";
   const tagsHtml = tags.length
     ? `<div class="tags">${tags.map((tag) => `<span class="tag">${escape(tag)}</span>`).join("")}</div>`
     : "";
+  const siteHtml = website
+    ? `<a class="project-link" href="${escape(website)}" rel="noopener">Visit website</a>`
+    : "";
   return (
     `<article class="card project">${coverHtml}` +
     `<div class="project-body">${kindHtml}<h3 class="title">${escape(title)}</h3><p>${escape(desc)}</p>${tagsHtml}` +
-    `<a class="project-link" href="${escape(href)}" rel="noopener">${escape(linkText)}</a></div></article>`
+    `<div class="project-links"><a class="project-link" href="${escape(href)}" rel="noopener">${escape(linkText)}</a>${siteHtml}</div>` +
+    `</div></article>`
   );
 }
 
@@ -38,6 +42,7 @@ const cards = repos.map((repo) =>
     href: repo.url,
     linkText: "View on GitHub",
     image: repo.image,
+    website: repo.website,
   }),
 );
 cards.push(

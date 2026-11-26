@@ -31,7 +31,9 @@ Then open <http://localhost:8000>. The full demo is at
   locally run `bash tools/update-projects.sh` (needs the GitHub CLI). The last
   card always links to the GitHub profile itself. To give a project a picture,
   upload one on GitHub under the repository's **Settings → Social preview**
-  (1280×640 works best); it appears on the card after the next deploy.
+  (1280×640 works best); it appears on the card after the next deploy. If the
+  repository has a **Website** set in its About box, the card also gets a
+  "Visit website" link.
 - `assets/og-image.png` is the picture shown when the site's link is shared;
   its source is `tools/og-image.html`. `assets/apple-touch-icon.png` comes from
   `tools/touch-icon.html` the same way.

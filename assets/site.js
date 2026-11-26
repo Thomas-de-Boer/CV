@@ -16,7 +16,7 @@
       cta1: "Projects", cta2: "Neural network demo",
       project: "project", projects: "projects",
       projectsNote: "This list updates automatically from the projects I pin on GitHub.",
-      prev: "Previous projects", next: "Next projects", viewGh: "View on GitHub",
+      prev: "Previous projects", next: "Next projects", viewGh: "View on GitHub", visitSite: "Visit website",
       noDesc: "No description yet.", allTitle: "More on GitHub",
       allDesc: "All my public repositories are on my GitHub profile.", allLink: "Open my GitHub profile",
       nnTitle: "A neural network I wrote from scratch",
@@ -43,7 +43,7 @@
       cta1: "Projecten", cta2: "Demo neuraal netwerk",
       project: "project", projects: "projecten",
       projectsNote: "Deze lijst wordt automatisch bijgewerkt met de projecten die ik op GitHub vastzet.",
-      prev: "Vorige projecten", next: "Volgende projecten", viewGh: "Bekijk op GitHub",
+      prev: "Vorige projecten", next: "Volgende projecten", viewGh: "Bekijk op GitHub", visitSite: "Bekijk website",
       noDesc: "Nog geen beschrijving.", allTitle: "Meer op GitHub",
       allDesc: "Al mijn openbare repositories staan op mijn GitHub-profiel.", allLink: "Open mijn GitHub-profiel",
       nnTitle: "Een neuraal netwerk dat ik zelf heb geschreven",
@@ -131,7 +131,7 @@
 
   // `image` is the picture set on GitHub (repository Settings → Social preview);
   // without one, or if it fails to load, the card has no picture at all.
-  function projectCard(kind, title, desc, tags, href, linkText, image) {
+  function projectCard(kind, title, desc, tags, href, linkText, image, website, siteText) {
     var card = el("article", "card project");
     if (image) {
       var coverEl = el("div", "project-cover");
@@ -151,10 +151,19 @@
       tags.forEach(function (tag) { list.append(el("span", "tag", tag)); });
       body.append(list);
     }
+    var links = el("div", "project-links");
     var link = el("a", "project-link", linkText);
     link.href = href;
     link.rel = "noopener";
-    body.append(link);
+    links.append(link);
+    // `website` is the repository's "Website" field on GitHub, if it has one.
+    if (website) {
+      var site = el("a", "project-link", siteText);
+      site.href = website;
+      site.rel = "noopener";
+      links.append(site);
+    }
+    body.append(links);
     card.append(body);
     return card;
   }
@@ -167,7 +176,7 @@
     (repos || []).forEach(function (repo) {
       track.append(projectCard(
         repo.language, repo.name, repo.description || t.noDesc,
-        (repo.topics || []).slice(0, 4), repo.url, t.viewGh, repo.image
+        (repo.topics || []).slice(0, 4), repo.url, t.viewGh, repo.image, repo.website, t.visitSite
       ));
     });
     track.append(projectCard("", t.allTitle, t.allDesc, [], "https://github.com/" + GITHUB_USER, t.allLink));
